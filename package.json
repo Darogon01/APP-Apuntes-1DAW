@@ -1,0 +1,1 @@
+{ "name": "apuntes-daw", "private": true, "description": "Solo para regenerar el contenido SQL (scripts/mark-sql.mjs). La web no necesita instalar nada.", "type": "module", "devDependencies": { "@electric-sql/pglite": "0.5.11" } }

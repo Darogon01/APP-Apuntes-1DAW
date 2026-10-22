@@ -17,6 +17,7 @@
 @import "components/data-table.css";
 @import "components/callout.css";
 @import "components/live-editor.css";
+@import "components/sql-editor.css";
 @import "components/topic-card.css";
 @import "components/pager.css";
 @import "components/toc.css";

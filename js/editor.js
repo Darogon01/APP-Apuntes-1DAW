@@ -21,8 +21,10 @@
   }
 
   function mount(el, cfg) {
+    if (cfg.sql != null) return APP.mountSql(el, cfg);
     const id = "live" + ++uid;
-    const files = ["html", "css", "js"].filter((k) => k === "html" || cfg[k] != null);
+    const files = ["html", "css", "js"].filter((k) => cfg[k] != null);
+    if (!files.length) files.push("html");
     const manual = cfg.js != null && cfg.js !== "" ? true : !!cfg.manual;
     const val = {}; files.forEach((k) => { val[k] = cfg[k] != null ? String(cfg[k]).replace(/^\n/, "").replace(/\s+$/, "") : ""; });
     const original = Object.assign({}, val);

@@ -7,7 +7,7 @@
     subjects: {},
     order: ["html", "css", "js", "java", "sql"],
     _live: [], _codes: [],
-    register(s) { this.subjects[s.slug] = Object.assign(this.subjects[s.slug] || {}, s); },
+    register(s) { const p = this.subjects[s.slug] || {}; this.subjects[s.slug] = Object.assign(p, s, s.contenido ? { contenido: Object.assign(p.contenido || {}, s.contenido) } : {}); },
   });
 
   const esc = (t) => String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -18,18 +18,18 @@
      [texto](@id-de-sección)  [texto](https://…)  */
   const DOT = { ok: "full", half: "half", no: "empty" };
   APP.inline = function (t, slug) {
-    return String(t).split(/(`[^`]+`)/g).map((p) => {
-      if (p.length > 2 && p[0] === "`" && p[p.length - 1] === "`") return `<code class="inline-code">${esc(p.slice(1, -1))}</code>`;
-      return esc(p)
-        .replace(/\*\*(.+?)\*\*/g, '<strong class="emphasis">$1</strong>')
-        .replace(/\{\{(.+?)\}\}/g, '<kbd class="key">$1</kbd>')
-        .replace(/\[\[(ok|half|no)\]\]/g, (m, k) => `<span class="status-dot status-dot--${DOT[k]}" aria-hidden="true"></span>`)
-        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (m, txt, url) => {
-          if (url.startsWith("@")) return `<a class="link" href="#/${slug}/${url.slice(1)}">${txt}</a>`;
-          if (/^https?:/.test(url)) return `<a class="link" href="${url}" target="_blank" rel="noopener">${txt}</a>`;
-          return m;
-        });
-    }).join("");
+    const codes = [];
+    let h = String(t).replace(/`([^`]+)`/g, (m, c) => { codes.push(`<code class="inline-code">${esc(c)}</code>`); return `\u0000${codes.length - 1}\u0000`; });
+    h = esc(h)
+      .replace(/\*\*(.+?)\*\*/g, '<strong class="emphasis">$1</strong>')
+      .replace(/\{\{(.+?)\}\}/g, '<kbd class="key">$1</kbd>')
+      .replace(/\[\[(ok|half|no)\]\]/g, (m, k) => `<span class="status-dot status-dot--${DOT[k]}" aria-hidden="true"></span>`)
+      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (m, txt, url) => {
+        if (url.startsWith("@")) return `<a class="link" href="#/${slug}/${url.slice(1)}">${txt}</a>`;
+        if (/^https?:/.test(url)) return `<a class="link" href="${url}" target="_blank" rel="noopener">${txt}</a>`;
+        return m;
+      });
+    return h.replace(/\u0000(\d+)\u0000/g, (m, i) => codes[+i]);
   };
   APP.textOnly = (t) => APP.inline(t, "").replace(/<[^>]+>/g, "");
 
