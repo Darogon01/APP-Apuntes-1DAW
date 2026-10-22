@@ -1,0 +1,9 @@
+/* Regla con marcas (HUD) y franja de trama */
+@layer components {
+  .ruler { position: relative; height: 8px; margin-bottom: 4px; border-top: 1px solid var(--color-separator);
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='5'%3E%3Cpath d='M.5 0V5' stroke='%2334343C'/%3E%3C/svg%3E") repeat-x left top; }
+  .ruler--hud { border-top-color: var(--color-hud-line); }
+  .ruler--accent::before { content: ""; position: absolute; left: 0; top: -2px; width: 170px; height: 2px; background: var(--color-text); }
+  .stripe { height: 10px; margin-top: 44px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3Cpath d='M0 10 L10 0 L10 5 L5 10Z M0 5 L5 0 L0 0Z' fill='%2334343C'/%3E%3C/svg%3E") repeat-x; }
+}

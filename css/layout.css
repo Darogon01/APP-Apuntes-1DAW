@@ -1,0 +1,28 @@
+@layer layout {
+  .app__body { display: grid; grid-template-columns: var(--sidebar-width) minmax(0, 1fr); min-height: calc(100vh - var(--header-height)); }
+  .app__main { min-width: 0; padding: 40px 32px 0; }
+  .app__scrim { display: none; }
+
+  /* anchos de página: lectura (texto + índice) o ancho completo (portada y temarios) */
+  .page { display: grid; gap: var(--gap); justify-content: center; grid-template-columns: minmax(0, var(--reading-width)) var(--toc-width); }
+  .page--single { grid-template-columns: minmax(0, var(--reading-width)); }
+  .page--wide { grid-template-columns: minmax(0, var(--wide-width)); }
+  .page__content { min-width: 0; }
+
+  @media (max-width: 1360px) {
+    .page { grid-template-columns: minmax(0, var(--reading-width)); }
+    .page--wide { grid-template-columns: minmax(0, var(--wide-width)); }
+    .toc { display: none; }
+  }
+
+  @media (max-width: 960px) {
+    .app__body { grid-template-columns: minmax(0, 1fr); }
+    .app__main { padding: 28px 16px 0; }
+    .is-menu-open .app__scrim { display: block; position: fixed; inset: var(--header-height) 0 0 0; z-index: 45; background: rgb(10 10 12 / .7); }
+  }
+
+  @media print {
+    .site-header, .sidebar, .toc, .pager, .hud-button { display: none !important; }
+    body { background: #fff; color: #000; }
+  }
+}

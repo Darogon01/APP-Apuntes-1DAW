@@ -1,0 +1,7 @@
+@layer components {
+  .breadcrumb { margin-bottom: 18px; }
+  .breadcrumb__list { display: flex; flex-wrap: wrap; gap: 4px 10px; font-size: 12px; color: var(--color-text-3); }
+  .breadcrumb__item:not(:last-child)::after { content: "/"; margin-left: 10px; color: var(--color-line); }
+  .breadcrumb__link { color: var(--color-text-2); text-decoration: none; }
+  .breadcrumb__link:hover { color: var(--color-text); text-decoration: underline; }
+}

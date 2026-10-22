@@ -1,0 +1,31 @@
+/* Regla común de la barra naranja (HUD).
+   Horizontal bajo el elemento: temarios, logo, Índice y Buscar.
+   Vertical a la izquierda: módulos del aside y tarjetas.
+   Siempre visible y tenue; al pasar el ratón brilla solo la barra, no el contenedor. */
+@layer components {
+  .main-nav__link, .hud-button, .brand__mark { position: relative; }
+
+  .main-nav__link::after, .hud-button::after, .brand__mark::after {
+    content: ""; position: absolute; left: 14px; right: 14px; bottom: 7px; height: 2px;
+    background: var(--color-accent); opacity: .55;
+    transition: box-shadow .15s, opacity .15s;
+  }
+  .main-nav__link:hover::after, .main-nav__link:focus-visible::after,
+  .hud-button:hover::after, .hud-button:focus-visible::after,
+  .brand:hover .brand__mark::after, .brand:focus-visible .brand__mark::after {
+    opacity: 1; box-shadow: var(--glow-bar);
+  }
+  .main-nav__link--active::after { height: 3px; opacity: 1; box-shadow: var(--glow-bar); }
+
+  .module-list__link, .module-list__pending, .topic-card, .hint-card { position: relative; }
+
+  .module-list__link::before, .module-list__pending::before, .topic-card::before, .hint-card::before {
+    content: ""; position: absolute; left: 0; top: 6px; bottom: 6px; width: 2px;
+    background: var(--color-accent); opacity: .55;
+    transition: box-shadow .15s, opacity .15s;
+  }
+  .module-list__pending::before { opacity: .22; }
+  .module-list__link:hover::before, .module-list__link:focus-visible::before,
+  .topic-card:hover::before, .topic-card:focus-visible::before { opacity: 1; box-shadow: var(--glow-bar); }
+  .module-list__link--active::before { width: 3px; opacity: 1; box-shadow: var(--glow-bar); }
+}

@@ -1,0 +1,12 @@
+/* Cabecera invertida y filas alternas */
+@layer components {
+  .data-table { max-width: 100%; overflow-x: auto; }
+  .data-table__table { width: 100%; border-collapse: collapse; font-size: 13px; line-height: 1.5; }
+  .data-table__head { padding: 9px 14px; background: var(--color-text); color: var(--color-ink); font-weight: 500; text-align: left; white-space: nowrap; }
+  .data-table__cell { padding: 9px 14px; vertical-align: top; color: var(--color-text-2); }
+  .data-table__cell--first { color: var(--color-text); }
+  .data-table__row:nth-child(odd) .data-table__cell { background: var(--color-sunken); }
+  .data-table__row:nth-child(odd) .inline-code { background: var(--color-fill); }
+  .data-table__head .inline-code { background: transparent; border: 1px solid var(--color-ink); color: var(--color-ink); }
+  .data-table__row--link { cursor: pointer; }
+}

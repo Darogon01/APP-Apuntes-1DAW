@@ -1,0 +1,26 @@
+@layer components {
+  .live-editor { background: var(--color-panel); border: 1px solid var(--color-line); }
+  .live-editor__bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; min-height: 40px; padding-left: 14px; background: var(--color-sunken); border-bottom: 1px solid var(--color-line); }
+  .live-editor__title { margin-right: 12px; font-size: 12px; color: var(--color-text-2); }
+  .live-editor__tabs, .live-editor__actions { display: flex; align-items: stretch; }
+  .live-editor__tab, .live-editor__button { min-height: 40px; padding: 0 14px; background: none; border: 0; cursor: pointer; font-size: 12px; color: var(--color-text-2); }
+  .live-editor__tab:hover, .live-editor__button:hover { color: var(--color-text); background: var(--color-fill); }
+  .live-editor__tab--active { color: var(--color-text); border-bottom: 3px solid var(--color-accent); padding-bottom: 0; }
+  .live-editor__button--run { background: var(--color-text); color: var(--color-ink); font-weight: 500; }
+  .live-editor__button--run:hover { background: var(--color-text-2); color: var(--color-ink); }
+  .live-editor__grid { display: grid; grid-template-columns: 1fr 1fr; }
+  .live-editor__editor { display: flex; flex-direction: column; min-width: 0; border-right: 1px solid var(--color-line); }
+  .live-editor__input { flex: 1; width: 100%; min-height: 200px; padding: 14px 16px; resize: vertical; overflow: auto; background: transparent; border: 0; outline: 0;
+    color: var(--code-identifier); font: 400 13.5px / 22px var(--font-mono); tab-size: 2; white-space: pre; font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0; }
+  .live-editor__input:focus-visible { outline: 2px solid var(--color-accent); outline-offset: -2px; }
+  .live-editor__output { display: flex; flex-direction: column; min-width: 0; }
+  .live-editor__output-title { padding: 8px 14px; font-size: 11px; color: var(--color-text-3); border-bottom: 1px solid var(--color-line); }
+  .live-editor__frame { display: block; flex: 1; width: 100%; min-height: 200px; border: 0; background: #fff; }
+  .live-editor__console { max-height: 140px; margin: 0; padding: 8px 14px; overflow: auto; white-space: pre-wrap; background: var(--color-bg); border-top: 1px solid var(--color-line); font-size: 12px; line-height: 20px; color: var(--color-text-2); }
+  .live-editor__console:empty { display: none; }
+
+  @media (max-width: 960px) {
+    .live-editor__grid { grid-template-columns: 1fr; }
+    .live-editor__editor { border-right: 0; border-bottom: 1px solid var(--color-line); }
+  }
+}

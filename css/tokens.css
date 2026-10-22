@@ -1,0 +1,62 @@
+/* Tokens de diseño. Sistema HUD adaptado a web:
+   blanco estructura, naranja señala, color solo dentro del marco de código. */
+@layer tokens {
+  :root {
+    /* superficie */
+    --color-bg: #0A0A0C;
+    --color-panel: #101013;
+    --color-sunken: #1B1B20;
+    --color-fill: #2A2A31;
+    --color-hud: #0B0F17;
+    --color-hud-line: #1A2130;
+
+    /* línea */
+    --color-line: #34343C;
+    --color-separator: #4A4A55;
+    --color-mid: #6E6E78;
+
+    /* texto */
+    --color-text: #F2F2F0;
+    --color-text-2: #A5A5B0;
+    --color-text-3: #84848F;
+    --color-text-hud: #7C8699;
+    --color-ink: #0A0A0C;
+
+    /* acento */
+    --color-accent: #E8621C;
+    --glow-bar: 0 0 6px 1px var(--color-accent), 0 0 14px 2px rgb(232 98 28 / .5);
+
+    /* tema del código (Ayu Mirage adaptado): solo dentro de .code-block */
+    --code-keyword: #AE81FF;
+    --code-primitive: #5CCFE6;
+    --code-type: #73D0FF;
+    --code-method: #FFCD66;
+    --code-identifier: #CCCAC2;
+    --code-number: #F28779;
+    --code-string: #D5FF80;
+    --code-punctuation: #8A8983;
+    --code-comment: #6F9B6A;
+
+    /* tipografía */
+    --font-mono: "Fira Code", "DejaVu Sans Mono", ui-monospace, monospace;
+    --font-size-base: 15px;
+    --line-height-base: 1.6;
+
+    /* retícula */
+    --header-height: 64px;
+    --sidebar-width: 288px;
+    --toc-width: 248px;
+    --reading-width: 780px;
+    --wide-width: 1500px;
+    --gap: 40px;
+
+    /* tamaño fijo de tarjetas */
+    --card-width: 360px;
+    --card-height: 250px;
+
+    /* esquina cortada */
+    --cut: 12px;
+  }
+
+  @media (max-width: 960px) { :root { --header-height: 112px; } }
+}

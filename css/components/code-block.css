@@ -1,0 +1,27 @@
+@layer components {
+  .code-block { position: relative; background: var(--color-panel); }
+  .code-block__bar { display: flex; align-items: center; justify-content: space-between; min-height: 36px; padding-left: 14px; background: var(--color-sunken); border-bottom: 1px solid var(--color-line); font-size: 11px; color: var(--color-text-3); }
+  .code-block__copy { min-height: 36px; padding: 0 14px; background: none; border: 0; cursor: pointer; font-size: 11px; color: var(--color-text-2); }
+  .code-block__copy:hover { color: var(--color-text); background: var(--color-fill); }
+  .code-block__body { display: flex; align-items: stretch; }
+  .code-block__gutter { flex: none; width: 44px; margin: 0; padding: 14px 8px 14px 0; text-align: right; background: var(--color-sunken); border-right: 1px solid var(--color-line); color: var(--color-text-3); font-size: 11px; line-height: 22px; user-select: none; }
+  .code-block__pre { flex: 1; min-width: 0; margin: 0; padding: 14px 18px; overflow-x: auto; font-size: 13.5px; line-height: 22px; tab-size: 4; }
+  .code-block__code { padding: 0; background: none; font: inherit; font-weight: 400; color: var(--code-identifier); }
+
+  /* roles del tema (highlight.js → paleta del sistema). Peso 400 siempre. */
+  .hljs-keyword, .hljs-selector-tag, .hljs-meta .hljs-keyword, .hljs-doctag, .hljs-at-rule, .hljs-selector-id, .hljs-tag, .hljs-name { color: var(--code-keyword); }
+  .hljs-type { color: var(--code-primitive); }
+  .hljs-title.class_, .hljs-title.class_.inherited__, .hljs-selector-class, .hljs-attr, .hljs-attribute, .hljs-tag .hljs-attr { color: var(--code-type); }
+  .hljs-title.function_, .hljs-built_in, .hljs-title { color: var(--code-method); }
+  .hljs-number, .hljs-literal, .hljs-symbol, .hljs-bullet { color: var(--code-number); }
+  .hljs-string, .hljs-regexp, .hljs-template-variable, .hljs-tag .hljs-string { color: var(--code-string); }
+  .hljs-comment, .hljs-quote { color: var(--code-comment); }
+  .hljs-punctuation, .hljs-operator { color: var(--code-punctuation); }
+  .hljs-variable, .hljs-params, .hljs-property, .hljs-subst, .hljs-meta, .hljs-section { color: var(--code-identifier); }
+  .hljs-keyword *, .hljs-comment *, .hljs-string * { font-weight: 400; }
+
+  @media (max-width: 640px) {
+    .code-block__gutter { width: 38px; }
+    .code-block__pre { padding: 14px 12px; }
+  }
+}

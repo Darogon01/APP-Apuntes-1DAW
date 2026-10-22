@@ -1,0 +1,11 @@
+@layer components {
+  .pager { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 72px; }
+  .pager__link { position: relative; display: block; min-height: 44px; padding: 16px 22px 14px 26px; text-decoration: none; background: var(--color-panel); }
+  .pager__link::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--color-text); }
+  .pager__link--next::before { background: var(--color-accent); }
+  .pager__link:hover { background: var(--color-sunken); }
+  .pager__label { display: block; margin-bottom: 4px; font-size: 11px; color: var(--color-text-3); }
+  .pager__title { font-size: 15px; font-weight: 500; }
+  .pager__empty { display: block; }
+  @media (max-width: 640px) { .pager { grid-template-columns: 1fr; } }
+}
