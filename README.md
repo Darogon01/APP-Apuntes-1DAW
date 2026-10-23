@@ -15,6 +15,8 @@ python -m http.server 8000
 
 y abre http://localhost:8000 (hace falta un servidor; abrir `index.html` con doble clic no carga el motor de SQL).
 
+O Abrir con enlace de GitHub Pages: https://darogon01.github.io/APP-Apuntes-1DAW/
+
 ## Estructura
 
 | Carpeta | Contenido |
