@@ -10,7 +10,7 @@
 
 > Este documento explica **cómo está construido** el repositorio, **qué hace cada pieza** y, sobre todo, **por qué se hizo así y no de otra
 > manera**. Es la referencia para quien vaya a mantener, ampliar o auditar el proyecto. El diseño visual está en
-> [`FOUNDATIONS.md`](FOUNDATIONS.md); el uso básico, en [`README.md`](README.md).
+> [`FOUNDATIONS-DESIGN.md`](FOUNDATIONS-DESIGN.md); el uso básico, en [`README.md`](README.md).
 
 ---
 
@@ -81,7 +81,7 @@ inmediata, buscador rápido, lectura cómoda y cero fricción (sin cuentas, sin 
 ├── index.html                  ← única página; esqueleto + orden de carga de los scripts
 ├── favicon.svg                 ← logo Nodex (cuadrado, nodo naranja, monograma N)
 ├── README.md                   ← presentación y arranque rápido
-├── FOUNDATIONS.md              ← sistema de diseño normativo (con muestras SVG)
+├── FOUNDATIONS-DESIGN.md       ← sistema de diseño normativo (con muestras SVG)
 ├── WIKI.md                     ← este documento
 ├── package.json                ← solo para regenerar contenido SQL (no se necesita para ver la web)
 ├── .nojekyll                   ← desactiva Jekyll en GitHub Pages
@@ -119,7 +119,7 @@ inmediata, buscador rápido, lectura cómoda y cero fricción (sin cuentas, sin 
 │   ├── jslib.py  js_a.py … js_d.py  gen_js.py
 │   ├── join_content.py  mision_content.py  calc_exprs.py  calc_results.json  pgeval.py
 │   ├── verify_join.py
-│   └── gen_foundations.py      ← genera las muestras y piezas SVG de FOUNDATIONS.md
+│   └── gen_foundations.py      ← genera las muestras y piezas SVG de FOUNDATIONS-DESIGN.md
 │
 └── docs/foundations/           ← SVG generados (swatches/, palettes/, components/)
 ```
@@ -445,7 +445,7 @@ sequenceDiagram
 - **Sin JS**: la vista se actualiza al escribir, sin pulsar nada.
 - **Defensa en el `srcdoc`**: se neutralizan `</script` y `</style` dentro del código del usuario para que no rompan el documento.
 - **Restablecer** devuelve el ejemplo original (copia guardada al montar).
-- El resultado va sobre **fondo blanco** a propósito (desviación D-2 de `FOUNDATIONS.md`): simula una página real.
+- El resultado va sobre **fondo blanco** a propósito (desviación D-2 de `FOUNDATIONS-DESIGN.md`): simula una página real.
 
 ---
 
@@ -541,7 +541,7 @@ datos; `"leyenda"` dibuja la leyenda de colores por tabla.
 | **Responsive** | Tres puntos de quiebre (1360, 960 y 640 px) declarados en `layout.css` y en los componentes que lo necesitan. |
 | **Impresión** | `@media print` oculta navegación y deja fondo blanco. |
 
-El detalle visual (paleta, tipografía, componentes, accesibilidad) está en [`FOUNDATIONS.md`](FOUNDATIONS.md).
+El detalle visual (paleta, tipografía, componentes, accesibilidad) está en [`FOUNDATIONS-DESIGN.md`](FOUNDATIONS-DESIGN.md).
 
 **Convenciones de nombres.** Las _claves de contenido_ (`bloques`, `secciones`, `consola`) están en español porque son el lenguaje del
 dominio (apuntes en español); las _clases CSS_, funciones y ficheros de código están en inglés porque es la convención del sector.
@@ -554,7 +554,7 @@ dominio (apuntes en español); las _clases CSS_, funciones y ficheros de código
 
 HTML semántico (`header`, `nav`, `main`, `aside`, `section`, `article`, `figure`), enlace «Saltar al contenido», etiquetas `aria-label`
 en regiones, `aria-live="polite"` en resultados, foco visible, regiones desplazables enfocables con teclado, `<dialog>` nativo para la
-búsqueda, `prefers-reduced-motion` y significado nunca solo por color. Medidas y contrastes en `FOUNDATIONS.md` (apartado 6).
+búsqueda, `prefers-reduced-motion` y significado nunca solo por color. Medidas y contrastes en `FOUNDATIONS-DESIGN.md` (apartado 6).
 
 ### Rendimiento
 
@@ -607,7 +607,7 @@ flowchart LR
 | `mision_content.py` | Genera misiones (módulo 21) y la chuleta a partir de los resultados; inyecta funciones JS con marcadores `__JS__…__JS__`. |
 | `bundle.py` | Empaqueta CSS, JS y fuentes en `dist/index.html` para probarlo sin servidor (carpeta ignorada por git). |
 | `verify_join.py` | Contrasta `joinviz` con PostgreSQL (apartado 15). |
-| `gen_foundations.py` | Genera las muestras de color y las piezas HUD de `FOUNDATIONS.md` como SVG. |
+| `gen_foundations.py` | Genera las muestras de color y las piezas HUD de `FOUNDATIONS-DESIGN.md` como SVG. |
 
 **Principio.** Un resultado que aparece en pantalla (la salida de una consulta, el valor de `7 / 2`) **se obtiene ejecutándolo**, no
 escribiéndolo a mano. Así no puede haber un ejemplo «bonito» que en la práctica dé otra cosa.
@@ -624,7 +624,7 @@ La aplicación no tiene _framework_ de pruebas: la verificación está donde el 
 | **SQL ejecutable** | `mark-sql.mjs` solo marca como ejecutables los bloques que se ejecutan sin error. | Ningún ejemplo «Ejecutar» falla por sintaxis. |
 | **Resultados de la chuleta** | `pgeval.py` obtiene cada resultado ejecutando la expresión. | Las tablas de resultados son reales. |
 | **Render de todos los módulos** | Recorrido de los 91 módulos comprobando que pintan sin excepciones y que los enlaces internos (`@id`) resuelven. | Sin módulos rotos ni enlaces colgantes. |
-| **Contraste de color** | `gen_foundations.py` calcula WCAG 2.x para cada token. | El texto cumple AA como mínimo (ver `FOUNDATIONS.md`). |
+| **Contraste de color** | `gen_foundations.py` calcula WCAG 2.x para cada token. | El texto cumple AA como mínimo (ver `FOUNDATIONS-DESIGN.md`). |
 
 Para reproducir la verificación del motor JOIN:
 
@@ -655,7 +655,7 @@ compilar. Tras un despliegue conviene **recargar sin caché** (`Ctrl`+`Shift`+`R
 **Ver en local.** Hace falta un servidor HTTP (`python -m http.server 8000`): abrir `index.html` con doble clic no permite al navegador
 cargar el motor SQL (`import()` de un módulo) por las restricciones de `file://`.
 
-**Documentación en el mismo repositorio.** `README.md`, `FOUNDATIONS.md`, `WIKI.md` y `docs/` se sirven también (como ficheros), pero la
+**Documentación en el mismo repositorio.** `README.md`, `FOUNDATIONS-DESIGN.md`, `WIKI.md` y `docs/` se sirven también (como ficheros), pero la
 aplicación no los usa.
 
 ---
@@ -824,7 +824,7 @@ Formato: **contexto → decisión → alternativas descartadas y motivo → cons
 1. Rama nueva en `APP.block` (`core.js`) que devuelva HTML con clases BEM.
 2. Rama equivalente en `APP.plain` para que el buscador indexe su texto.
 3. Fichero `css/components/<nombre>.css` con `@layer components` y **solo tokens**.
-4. Documentarlo en `FOUNDATIONS.md` (apartado 4) y en el apartado 5.2 de este documento.
+4. Documentarlo en `FOUNDATIONS-DESIGN.md` (apartado 4) y en el apartado 5.2 de este documento.
 
 ### Añadir un temario
 
@@ -833,7 +833,7 @@ Formato: **contexto → decisión → alternativas descartadas y motivo → cons
 
 ### Cambiar el diseño
 
-Editar `css/tokens.css`, ejecutar `python scripts/gen_foundations.py` y actualizar `FOUNDATIONS.md`. Seguir la lista de comprobación
+Editar `css/tokens.css`, ejecutar `python scripts/gen_foundations.py` y actualizar `FOUNDATIONS-DESIGN.md`. Seguir la lista de comprobación
 del apartado 8.4 de ese documento.
 
 ### Convenciones de commits
@@ -858,4 +858,4 @@ Mensajes en español, en imperativo y con el _qué_ y el _porqué_ en la primera
 | **`tienda_online`** | Base de datos de práctica de todos los ejemplos y misiones de SQL. |
 | **Token** | Variable CSS de diseño definida en `css/tokens.css`. |
 | **BEM** | Convención de nombres CSS `bloque__elemento--modificador`. |
-| **Desviación** | Excepción documentada a un principio del sistema de diseño (`FOUNDATIONS.md`, 8.1). |
+| **Desviación** | Excepción documentada a un principio del sistema de diseño (`FOUNDATIONS-DESIGN.md`, 8.1). |

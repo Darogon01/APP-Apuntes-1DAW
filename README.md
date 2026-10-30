@@ -21,10 +21,10 @@ O Abrir con enlace de GitHub Pages: https://darogon01.github.io/APP-Apuntes-1DAW
 
 | Documento | Para qué sirve |
 |---|---|
-| [`FOUNDATIONS.md`](FOUNDATIONS.md) | Sistema de diseño normativo: principios, color con muestras visuales, tipografía, retícula, componentes dibujados en SVG, accesibilidad y gobierno. |
+| [`FOUNDATIONS-DESIGN.md`](FOUNDATIONS-DESIGN.md) | Sistema de diseño normativo: principios, color con muestras visuales, tipografía, retícula, componentes dibujados en SVG, accesibilidad y gobierno. |
 | [`WIKI.md`](WIKI.md) | Estructura del repositorio, arquitectura técnica, implementación, funcionalidades y decisiones («por qué así y no de otra forma»). |
 
-Las muestras de `FOUNDATIONS.md` se generan con `python scripts/gen_foundations.py` a partir de `css/tokens.css`.
+Las muestras de `FOUNDATIONS-DESIGN.md` se generan con `python scripts/gen_foundations.py` a partir de `css/tokens.css`.
 
 ## Estructura
 
@@ -35,7 +35,7 @@ Las muestras de `FOUNDATIONS.md` se generan con `python scripts/gen_foundations.
 | `content/` | Un fichero por temario con módulos → secciones → bloques |
 | `vendor/` | Fira Code, highlight.js y PGlite (licencias incluidas) |
 | `scripts/` | Herramientas de autor: conversión de contenido, marcado de SQL ejecutable, empaquetado y generación de las muestras de diseño |
-| `docs/` | Dibujos SVG generados que ilustran `FOUNDATIONS.md` |
+| `docs/` | Dibujos SVG generados que ilustran `FOUNDATIONS-DESIGN.md` |
 
 ## Tarjetas de consulta (color por tabla)
 

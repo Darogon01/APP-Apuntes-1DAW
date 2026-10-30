@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Genera las muestras de color y las piezas HUD de FOUNDATIONS.md como SVG.
+"""Genera las muestras de color y las piezas HUD de FOUNDATIONS-DESIGN.md como SVG.
 
 Fuente única de verdad: css/tokens.css (colores) y js/app.js (glifos de los iconos).
 Salida: docs/foundations/{swatches,palettes,components}/*.svg y docs/foundations/_tables.json
-(tablas de contraste que se pegan en FOUNDATIONS.md).
+(tablas de contraste que se pegan en FOUNDATIONS-DESIGN.md).
 
 Uso:  python scripts/gen_foundations.py
 
