@@ -22,6 +22,7 @@
     let h = String(t).replace(/`([^`]+)`/g, (m, c) => { codes.push(`<code class="inline-code">${esc(c)}</code>`); return `\u0000${codes.length - 1}\u0000`; });
     h = esc(h)
       .replace(/\*\*(.+?)\*\*/g, '<strong class="emphasis">$1</strong>')
+      .replace(/\(\((\w+)\|(.+?)\)\)/g, '<span class="ac" style="--tc:var(--t-$1)">$2</span>')
       .replace(/\{\{(.+?)\}\}/g, '<kbd class="key">$1</kbd>')
       .replace(/\[\[(ok|half|no)\]\]/g, (m, k) => `<span class="status-dot status-dot--${DOT[k]}" aria-hidden="true"></span>`)
       .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (m, txt, url) => {
@@ -68,6 +69,7 @@
 
   APP.block = function (b, slug) {
     if (b.p != null) return paras(b.p, slug, "text");
+    if (b.join !== undefined) return APP.joinBlock(b.join, slug);
     if (b.h4) return `<h3 class="subhead">${APP.inline(b.h4, slug)}</h3>`;
     if (b.code != null) return codeBlock(b);
     if (b.consola != null) return consoleBlock(b);
@@ -93,6 +95,7 @@
   /* texto plano de un bloque, para el buscador */
   APP.plain = function (b) {
     if (b.p != null) return b.p;
+    if (b.join !== undefined) return APP.joinPlain(b.join);
     if (b.code != null) return b.code;
     if (b.consola != null) return b.consola;
     if (b.tabla) return b.tabla.cabs.join(" ") + " " + b.tabla.filas.map((f) => f.join(" ")).join(" ");

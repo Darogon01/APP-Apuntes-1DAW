@@ -36,6 +36,7 @@
 
   /* ---------------------------------------------------------- piezas comunes */
   function renderMainNav(slug) {
+    const cheat = $("#cheat-link"); if (cheat) cheat.hidden = slug !== "sql";
     navList.innerHTML = APP.order.map((k) => {
       const on = k === slug;
       return `<li class="main-nav__item"><a class="main-nav__link${on ? " main-nav__link--active" : ""}" href="#/${k}"${on ? ' aria-current="page"' : ""}>${esc(S[k].etiqueta)}</a></li>`;
@@ -194,7 +195,7 @@
     index = [];
     for (const k of APP.order) { const s = S[k]; for (const m of s.modulos) { const c = contentOf(s, m); if (!c) continue;
       for (const sec of c.secciones) {
-        const raw = sec.bloques.map(APP.plain).join(" ").replace(/[`*_|]/g, " ").replace(/\s+/g, " ");
+        const raw = sec.bloques.map(APP.plain).join(" ").replace(/\[([^\]]+)\]\([^)]*\)/g, "$1").replace(/[`*_|]/g, " ").replace(/\s+/g, " ");
         index.push({ slug: k, doc: s.nombre, modNum: m.num, modTitle: m.title, id: sec.id, title: sec.titulo.replace(/`/g, ""), raw, n: norm(raw), nt: norm(sec.titulo + " " + m.title) });
       } } }
     return index;

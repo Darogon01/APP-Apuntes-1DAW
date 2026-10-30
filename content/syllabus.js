@@ -7,12 +7,13 @@
   APP.register({
     slug: "sql", nombre: "SQL", etiqueta: "BD + SQL", modulo: "Bases de datos", tema: "PostgreSQL 18 · pgAdmin 4",
     modulos: [
-      M("DB", "BD de práctica"), M("00", "Conceptos base"), M("01", "pgAdmin 4 y psql"), M("02", "Modelo Entidad/Relación"),
+      M("DB", "BD de práctica"), M("CH", "Chuleta de cálculos"), M("00", "Conceptos base"), M("01", "pgAdmin 4 y psql"), M("02", "Modelo Entidad/Relación"),
       M("03", "Modelo relacional"), M("04", "Normalización"), M("05", "DDL: bases de datos y tablas"), M("06", "Tipos de datos"),
       M("07", "Restricciones"), M("08", "DML: INSERT, UPDATE, DELETE"), M("09", "SELECT básico"), M("10", "Funciones"),
       M("11", "Agrupar y agregar"), M("12", "JOIN"), M("13", "Subconsultas, CTE y conjuntos"), M("14", "Vistas e índices"),
       M("15", "Transacciones"), M("16", "Usuarios y permisos"), M("17", "Programación en la BD"),
       M("18", "Copias, importar y exportar"), M("19", "Errores frecuentes"), M("20", "Misiones: casos reales"),
+      M("21", "Misiones: ejercicios de consultas"),
     ],
   });
   APP.register({

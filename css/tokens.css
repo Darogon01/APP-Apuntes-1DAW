@@ -37,6 +37,14 @@
     --code-punctuation: #8A8983;
     --code-comment: #6F9B6A;
 
+    /* color por tabla (solo dentro de las tarjetas de consulta y de los diagramas JOIN) */
+    --t-clientes: #6EA1FF;
+    --t-pedidos: #FF8A70;
+    --t-empleados: #B98CFF;
+    --t-lineas_pedido: #3FD1BB;
+    --t-productos: #6FD36F;
+    --t-categorias: #FF7FC0;
+
     /* tipografía */
     --font-mono: "Fira Code", "DejaVu Sans Mono", ui-monospace, monospace;
     --font-size-base: 15px;

@@ -22,7 +22,14 @@ O Abrir con enlace de GitHub Pages: https://darogon01.github.io/APP-Apuntes-1DAW
 | Carpeta | Contenido |
 |---|---|
 | `css/` | `tokens.css`, `base.css`, `layout.css` y un fichero por componente (BEM) |
-| `js/` | `core.js` (dibujo de bloques), `app.js` (rutas, buscador), `editor.js`, `sql-runner.js` |
+| `js/` | `core.js` (dibujo de bloques), `app.js` (rutas, buscador), `editor.js`, `sql-runner.js` y `joinviz.js` (tarjetas de consulta con un color por tabla) |
 | `content/` | Un fichero por temario con módulos → secciones → bloques |
 | `vendor/` | Fira Code, highlight.js y PGlite (licencias incluidas) |
 | `scripts/` | Herramientas de autor: conversión de contenido, marcado de SQL ejecutable y empaquetado |
+
+## Tarjetas de consulta (color por tabla)
+
+El bloque `{ join: {...} }` de `js/joinviz.js` explica una consulta con un color por tabla, el `ON` sombreado, una flecha por pareja y el resultado **calculado con los datos reales** de `tienda_online` (se leen del propio script `content/tienda-sql.js`). Se usa en el módulo 12 (JOIN) y en el 21 (misiones). El color por tabla (`--t-*` en `css/tokens.css`) es una excepción documentada del sistema HUD: solo existe dentro de estas tarjetas.
+
+Para comprobar que el motor coincide con PostgreSQL: `python3 -m http.server 8777` y, en otra terminal, `python3 scripts/verify_join.py` (requiere Playwright). Los módulos 12, CH y 21 se generan con `scripts/join_content.py` y `scripts/mision_content.py`.
+
