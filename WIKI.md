@@ -1,6 +1,6 @@
 <div align="center">
 
-# Nodex · Wiki técnica
+# Modex · Wiki técnica
 
 **Cómo está construido _Apuntes 1.º DAW_ y por qué**
 

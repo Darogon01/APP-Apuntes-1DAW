@@ -118,11 +118,17 @@ def icon(kind, x, y, size=132):
             f'<g stroke="{ACC}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">{GL[kind]}</g></g>')
 
 
+MCELLS = {(0, 0), (4, 0), (0, 1), (1, 1), (3, 1), (4, 1), (0, 2), (2, 2), (4, 2), (0, 3), (4, 3), (0, 4), (4, 4)}
+
+
+def logo_cells(fg=None, accent=None):
+    """La M de Modex: 13 módulos de 5 × 5 en retícula de 5 columnas (paso 5,8). El central es el naranja."""
+    fg, accent = fg or TEXT, accent or ACC
+    return "".join(f'<rect x="{1.9 + c * 5.8:.1f}" y="{1.9 + r * 5.8:.1f}" width="5" height="5" fill="{accent if (c, r) == (2, 2) else fg}"/>' for c, r in sorted(MCELLS, key=lambda t: (t[1], t[0])))
+
+
 def logo(x, y, size=32):
-    s = size / 32
-    return (f'<g transform="translate({x} {y}) scale({s:.4f})"><rect x="5" y="5" width="22" height="22" fill="none" stroke="{TEXT}" stroke-width="2"/>'
-            f'<rect x="5" y="5" width="6" height="6" fill="{ACC}"/>'
-            f'<polyline points="11,23 11,13 21,23 21,13" fill="none" stroke="{TEXT}" stroke-width="2.2" stroke-linejoin="miter" stroke-miterlimit="10"/></g>')
+    return f'<g transform="translate({x} {y}) scale({size / 32:.4f})">{logo_cells()}</g>'
 
 
 def doc(w, h, body, title, desc, bg=BG):
@@ -264,7 +270,7 @@ def header():
     W = 1100
     b = line(0, 63.5, W, 63.5, SEP)
     b += logo(26, 16, 32) + bar(36 - 8 + 8, 56, 28, 2, "rest")
-    b += tx(86, 30, "Nodex", 15, TEXT, 500) + tx(86, 46, "Apuntes 1.º DAW · guía de apoyo", 11, TEXT3)
+    b += tx(86, 30, "Modex", 15, TEXT, 500) + tx(86, 46, "Apuntes 1.º DAW · guía de apoyo", 11, TEXT3)
     labels = ["HTML", "CSS", "JS", "JAVA", "BD + SQL"]
     x = 340
     for i, l in enumerate(labels):
@@ -285,7 +291,7 @@ def header():
     W2 = 390
     b = line(0, 111.5, W2, 111.5, SEP)
     b += tx(16, 36, "Índice", 13, TEXT2) + bar(8 + 8, 44, 40, 2, "rest")
-    b += logo(76, 8, 28) + tx(112, 30, "Nodex", 15, TEXT, 500)
+    b += logo(76, 8, 28) + tx(112, 30, "Modex", 15, TEXT, 500)
     b += tx(W2 - 16, 36, "Buscar", 13, TEXT2, anchor="end") + bar(W2 - 70, 44, 54, 2, "rest")
     b += line(0, 58, W2, 58, SEP)
     x = 12
@@ -298,20 +304,23 @@ def header():
 
 
 def brand():
-    b = caption(24, 28, "LOGO · RETÍCULA 32 × 32")
-    b += rect(24, 44, 256, 256, BG, LINE)
-    b += logo(24, 44, 256)
-    for i in range(1, 8):
-        b += line(24 + 32 * i, 44, 24 + 32 * i, 300, LINE, .5, .35) + line(24, 44 + 32 * i, 280, 44 + 32 * i, LINE, .5, .35)
-    b += tx(304, 70, "Nodex", 22, TEXT, 500)
-    for i, (t, d) in enumerate([("Cuadrado", "22 × 22, trazo 2 px, blanco"), ("Esquina", "6 × 6, naranja: señal de «nodo»"), ("Monograma N", "trazo 2,2 px, vértices a inglete"), ("Fondo", "#0A0A0C, sin degradado")]):
-        b += rect(304, 96 + i * 38, 8, 8, ACC if i == 1 else TEXT) + tx(324, 105 + i * 38, t, 13, TEXT, 500) + tx(324, 122 + i * 38, d, 11.5, TEXT3)
-    b += caption(304, 270, "TAMAÑOS DE USO")
-    x = 304
-    for s in (16, 32, 48, 64):
-        b += rect(x, 284, s, s, BG, LINE) + logo(x, 284, s)
-        x += s + 20
-    save("components/logo.svg", doc(640, 390, b, "Logotipo Nodex", "Construcción del logo sobre retícula de 32 unidades y tamaños de uso"))
+    b = caption(24, 28, "LOGO · RETÍCULA 5 × 5")
+    b += rect(24, 44, 256, 256, BG, LINE) + logo(24, 44, 256)
+    for i in range(0, 6):
+        v = 24 + (1.9 + i * 5.8 - .4) * 8
+        b += line(v, 44, v, 300, LINE, .5, .3) + line(24, 44 + (1.9 + i * 5.8 - .4) * 8, 280, 44 + (1.9 + i * 5.8 - .4) * 8, LINE, .5, .3)
+    # versión vertical: marca y, debajo, el nombre
+    b += caption(310, 28, "VERSIÓN VERTICAL")
+    b += rect(310, 44, 300, 256, BG, LINE) + logo(370, 60, 180) + tx(460, 278, "MODEX", 26, TEXT, 500, "middle", 9)
+    for i, (t, d) in enumerate([("13 módulos", "5 × 5 px en retícula de 5 columnas"), ("Un módulo naranja", "el central: el que estás estudiando"), ("Nombre", "MODEX · Fira Code 500 · 9 px entre letras"), ("Fondo", "#0A0A0C, sin degradado")]):
+        b += rect(640, 52 + i * 52, 8, 8, ACC if i == 1 else TEXT) + tx(660, 61 + i * 52, t, 13, TEXT, 500) + tx(660, 79 + i * 52, d, 11.5, TEXT3)
+    b += caption(24, 336, "TAMAÑOS DE USO (16 PX ES EL MÍNIMO RECOMENDADO)")
+    x = 24
+    for sz in (16, 32, 48, 64):
+        b += rect(x, 352, sz, sz, BG, LINE) + logo(x, 352, sz)
+        x += sz + 20
+    b += rect(340, 352, 320, 64, BG, LINE) + logo(356, 368, 32) + tx(404, 390, "Modex", 15, TEXT, 500) + tx(404, 406, "Apuntes 1.º DAW · guía de apoyo", 11, TEXT3)
+    save("components/logo.svg", doc(960, 444, b, "Logotipo Modex", "La M de bloques, su versión vertical con el nombre debajo, especificaciones y tamaños de uso"))
 
 
 def icons():
@@ -700,7 +709,7 @@ def sheet():
     import re as _re
     colw, gutter, top = 960, 40, 120
     cols = [top, top]
-    body = tx(40, 52, "NODEX · HOJA DE COMPONENTES", 20, TEXT, 500, ls=2.4) + tx(40, 78, "Marca, color, tipografía, retícula y todos los componentes del sistema HUD en un solo documento.", 12.5, TEXT3)
+    body = tx(40, 52, "MODEX · HOJA DE COMPONENTES", 20, TEXT, 500, ls=2.4) + tx(40, 78, "Marca, color, tipografía, retícula y todos los componentes del sistema HUD en un solo documento.", 12.5, TEXT3)
     body += line(40, 96, 40 + colw * 2 + gutter, 96, SEP)
     for n, (name, rel) in enumerate(SHEET, 1):
         sub = (OUT / "components" / f"{rel}.svg") if "/" not in rel else (OUT / f"{rel}.svg")
@@ -716,7 +725,7 @@ def sheet():
         body += f'<svg x="{x}" y="{y + 36}" width="{sw_}" height="{sh_}" viewBox="0 0 {w} {h}">{inner}</svg>'
         cols[c] = y + 36 + sh_ + 36
     W, H = 40 * 2 + colw * 2 + gutter, max(cols) + 4
-    save("hoja-de-componentes.svg", doc(W, H, body, "Hoja de componentes Nodex", "Todos los componentes del sistema de diseño en un solo SVG"))
+    save("hoja-de-componentes.svg", doc(W, H, body, "Hoja de componentes Modex", "Todos los componentes del sistema de diseño en un solo SVG"))
 
 
 def build():

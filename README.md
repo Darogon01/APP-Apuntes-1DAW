@@ -1,4 +1,4 @@
-# Apuntes 1.º DAW
+# Modex · Apuntes 1.º DAW
 
 Guía de apoyo de 1.º DAW (HTML, CSS, JavaScript, Java y SQL) en forma de web estática.
 HTML semántico, CSS nativo con BEM y JavaScript sin compilación.
@@ -35,6 +35,7 @@ Las muestras de `FOUNDATIONS-DESIGN.md` se generan con `python scripts/gen_found
 | `content/` | Un fichero por temario con módulos → secciones → bloques |
 | `vendor/` | Fira Code, highlight.js y PGlite (licencias incluidas) |
 | `scripts/` | Herramientas de autor: conversión de contenido, marcado de SQL ejecutable, empaquetado y generación de las muestras de diseño |
+| `assets/` | Logotipos de la marca (generados con `scripts/gen_logo.py`) |
 | `docs/` | Dibujos SVG generados que ilustran `FOUNDATIONS-DESIGN.md` |
 
 ## Tarjetas de consulta (color por tabla)

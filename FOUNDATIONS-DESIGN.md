@@ -1,6 +1,6 @@
 <div align="center">
 
-# Nodex · Foundations
+# Modex · Foundations
 
 **Sistema de diseño «HUD» de _Apuntes 1.º DAW_**
 
@@ -11,7 +11,7 @@
 <p align="center"><img src="docs/foundations/components/banner.svg" width="760" alt="Banner HUD de la portada"></p>
 
 
-> **Foundations** es el documento normativo del sistema de diseño de Nodex. Define _qué_ se usa y _por qué_ (principios, color, tipografía,
+> **Foundations** es el documento normativo del sistema de diseño de Modex. Define _qué_ se usa y _por qué_ (principios, color, tipografía,
 > espaciado, forma, movimiento), _cómo_ se compone (componentes con su anatomía, estados y tokens) y _quién decide_ cuando hay que
 > cambiar algo (gobierno y versionado). Todo valor numérico que aparece aquí existe en el código; cuando el código y este documento
 > discrepan, **manda el código** y este documento se corrige.
@@ -37,7 +37,7 @@
 
 ### 1.1 Propósito
 
-Nodex es una guía de estudio de 1.º de Desarrollo de Aplicaciones Web (HTML, CSS, JavaScript, Java y SQL) que se consulta mientras se
+Modex es una guía de estudio de 1.º de Desarrollo de Aplicaciones Web (HTML, CSS, JavaScript, Java y SQL) que se consulta mientras se
 programa: abierta junto al editor, con prisa, a menudo de noche. El sistema de diseño existe para que **el contenido sea lo único que se
 vea** y para que cualquier pantalla nueva se parezca a las anteriores sin que nadie tenga que decidirlo otra vez.
 
@@ -326,12 +326,20 @@ Se usa un conjunto cerrado de valores en píxeles. Un valor fuera de la escala e
 
 ### Logotipo
 
-<p align="center"><img src="docs/foundations/components/logo.svg" width="640" alt="Construcción del logotipo Nodex"></p>
+<p align="center"><img src="docs/foundations/components/logo.svg" width="640" alt="Construcción del logotipo Modex"></p>
 
 
-Un cuadrado blanco de trazo fino con una esquina naranja —el _nodo_— y un monograma «N» de trazo con vértices a inglete. Se construye
-sobre una **retícula de 32 × 32**; el mismo dibujo sirve de favicon (`favicon.svg`) y de marca de la cabecera. Recomendación: dejar un
-módulo (6 unidades) libre alrededor y no bajar de 16 px.
+Una **M construida con 13 módulos** cuadrados de 5 × 5 sobre una retícula de 5 columnas. Los módulos son blancos y **el central es naranja**:
+el módulo que se está estudiando (principio 2: el naranja marca uno, nunca el grupo). El nombre, **MODEX**, va debajo en Fira Code 500,
+en mayúsculas y con 9 px de espaciado entre letras. Sale de _módulo_: la app se organiza en módulos.
+
+| Fichero | Uso |
+|---|---|
+| `favicon.svg` | Icono de pestaña y marca de la cabecera (solo la M). |
+| `assets/modex-logo.svg` | Marca sola. |
+| `assets/modex-logo-vertical.svg` | Marca con el nombre debajo; el texto está convertido en trazos, así que no necesita la tipografía instalada. |
+
+Se regeneran con `python scripts/gen_logo.py`. Recomendación: dejar libre alrededor un ancho de módulo y no bajar de 16 px.
 
 ### Iconos de temario
 
@@ -364,7 +372,7 @@ función que lo genera vive en `js/core.js` (bloques de contenido) o en `js/app.
 > **Hoja única.** Todos los componentes, la marca, el color y la retícula juntos en un solo SVG:
 > [`docs/foundations/hoja-de-componentes.svg`](docs/foundations/hoja-de-componentes.svg).
 
-<p align="center"><a href="docs/foundations/hoja-de-componentes.svg"><img src="docs/foundations/hoja-de-componentes.svg" width="900" alt="Hoja de componentes de Nodex"></a></p>
+<p align="center"><a href="docs/foundations/hoja-de-componentes.svg"><img src="docs/foundations/hoja-de-componentes.svg" width="900" alt="Hoja de componentes de Modex"></a></p>
 
 ### 4.1 Cabecera
 
@@ -375,7 +383,7 @@ función que lo genera vive en `js/core.js` (bloques de contenido) o en `js/app.
 
 | Parte | Descripción |
 |---|---|
-| Marca | Logo 32 px + «Nodex» (15/500) + eslogan (11/400, `--color-text-3`). En móvil se oculta el eslogan. |
+| Marca | Logo 32 px + «Modex» (15/500) + eslogan (11/400, `--color-text-3`). En móvil se oculta el eslogan. |
 | Temarios | Un enlace por temario, **todos del mismo ancho** (manda el rótulo más largo). Orden: HTML, CSS, JS, Java, BD + SQL. |
 | Chuleta | Solo en el temario SQL (`#cheat-link`). Atajo a la chuleta de cálculos. |
 | Buscar | Abre el diálogo de búsqueda; tecla `/`. |
@@ -610,7 +618,7 @@ componente o un token; _parche_ para correcciones de redacción o de medida.
 
 | Versión | Cambios |
 |---|---|
-| **1.0** | Primera edición normativa: principios, color con muestras, tipografía, retícula, 11 componentes dibujados en SVG, accesibilidad y gobierno. Incluye el contraste reforzado del texto secundario (`--color-text-2` `#C2C2CB`, `--color-text-3` `#9A9AA5`), el color por tabla y la marca Nodex. |
+| **1.0** | Primera edición normativa: principios, color con muestras, tipografía, retícula, 11 componentes dibujados en SVG, accesibilidad y gobierno. Incluye el contraste reforzado del texto secundario (`--color-text-2` `#C2C2CB`, `--color-text-3` `#9A9AA5`), el color por tabla y la marca Modex. |
 
 ---
 
