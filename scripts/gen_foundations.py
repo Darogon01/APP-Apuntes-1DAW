@@ -647,13 +647,86 @@ def interaction():
     save("components/interaccion.svg", doc(860, 348, b, "Estados e interacción", "Barra de acento en sus cuatro estados, foco de teclado, selección y enlaces"))
 
 
+def misc():
+    b = caption(24, 28, "MIGAS DE PAN · 12 PX · ENLACE EN TEXTO 2, PÁGINA ACTUAL EN TEXTO 3, SEPARADOR «/» EN LÍNEA")
+    x = 24
+    for i, (t, cur) in enumerate((("Apuntes", 0), ("Bases de datos · SQL", 0), ("09 SELECT básico", 1))):
+        b += tx(x, 54, t, 12, TEXT3 if cur else TEXT2)
+        x += len(t) * 7.2 + 10
+        if not cur:
+            b += tx(x, 54, "/", 12, LINE)
+            x += 18
+    b += caption(24, 96, "BÚSQUEDA · DIÁLOGO MODAL")
+    b += rect(24.6, 112.6, 760, 190, PANEL, SEP, 1.2) + rect(24, 112, 760, 56, "none") + line(25, 168, 784, 168, LINE)
+    b += tx(40, 146, "Buscar", 12, TEXT3) + tx(120, 146, "round", 16, TEXT) + line(740, 113, 740, 168, LINE) + tx(762, 146, "Cerrar", 12, TEXT2, anchor="middle")
+    b += rect(25, 169, 759, 66, SUNK) + rect(25, 169, 3, 66, ACC)
+    b += tx(44, 192, "Redondeo y truncado", 14, TEXT, 500) + tx(44, 209, "SQL · 10 Funciones", 11, TEXT3)
+    b += tx(44, 226, "… usa ", 12, TEXT2) + rect(87, 214, 40, 16, TEXT) + tx(91, 226, "round", 12, INK) + tx(133, 226, "(precio, 2) para dos decimales …", 12, TEXT2)
+    b += line(25, 235, 784, 235, LINE) + tx(44, 268, "Otro resultado", 14, TEXT, 500) + tx(44, 285, "SQL · CH Chuleta de cálculos", 11, TEXT3)
+    b += caption(24, 336, "TEXTO EN LÍNEA · CÓDIGO · TECLA · MARCAS DE ESTADO (LA FORMA LLEVA EL SIGNIFICADO) · ENLACE")
+    b += rect(24, 352, 70, 22, SUNK) + tx(30, 368, "inline-code", 12.5, TEXT)
+    b += rect(114.5, 352.5, 40, 21, "none", MID) + tx(121, 368, "Ctrl", 12, TEXT)
+    for i, (lab, fill) in enumerate((("completo", 1), ("medio", .5), ("vacío", 0))):
+        xx = 190 + i * 100
+        b += rect(xx + .6, 356.6, 9, 9, "none", TEXT, 1.2)
+        if fill == 1: b += rect(xx + .6, 356.6, 9, 9, TEXT)
+        if fill == .5: b += rect(xx + .6, 356.6, 4.5, 9, TEXT)
+        b += tx(xx + 16, 366, lab, 12, TEXT2)
+    b += tx(500, 366, "enlace", 13, TEXT) + line(500, 371, 500 + 6 * 7.8, 371, MID)
+    b += caption(24, 408, "LISTA · DESPLEGABLE · FIGURA")
+    for i, t in enumerate(("Primer elemento", "Segundo elemento")):
+        b += rect(30, 428 + i * 24, 4, 4, MID) + tx(46, 434 + i * 24, t, 14, TEXT)
+    b += rect(300.5, 418.5, 300, 44, "none", LINE) + tx(316, 446, "Ver la solución", 14, TEXT, 500) + tx(580, 446, "+", 14, TEXT2, anchor="middle")
+    b += rect(630, 418, 130, 64, "#FFFFFF", LINE) + tx(695, 456, "imagen", 12, "#1F2328", anchor="middle") + tx(630, 500, "Pie de figura", 12, TEXT3)
+    b += caption(24, 540, "PIE DE PÁGINA")
+    b += line(24, 556, 784, 556, LINE) + tx(24, 578, "Apuntes de 1.º DAW · versión beta", 11, TEXT3) + tx(784, 578, "Tipografía Fira Code (SIL OFL 1.1)", 11, TEXT3, anchor="end")
+    save("components/texto-busqueda-pie.svg", doc(808, 604, b, "Texto, búsqueda y pie", "Migas, diálogo de búsqueda, código en línea, tecla, marcas de estado, lista, desplegable, figura y pie"))
+
+
+SHEET = [
+    ("Marca", "logo"), ("Iconos", "iconos"),
+    ("Color · superficies", "palettes/surface"), ("Color · línea", "palettes/line"), ("Color · texto", "palettes/text"),
+    ("Color · acento", "palettes/accent"), ("Color · código", "palettes/code"), ("Color · tablas SQL", "palettes/table"), ("Reparto de color", "palettes/reparto"),
+    ("Tipografía", "tipografia"), ("Retícula y quiebres", "reticula"), ("Espaciado, trazos y forma", "espaciado-forma"), ("Estados e interacción", "interaccion"),
+    ("Cabecera · escritorio", "cabecera-escritorio"), ("Cabecera · móvil", "cabecera-movil"), ("Banner HUD", "banner"), ("Tarjetas", "tarjetas"),
+    ("Encabezados y reglas", "titulos"), ("Nota y aviso", "avisos"), ("Chips y botones", "chips-botones"), ("Bloque de código", "bloque-codigo"),
+    ("Consola", "consola"), ("Tabla de datos", "tabla-datos"), ("Editor en vivo", "editor-vivo"), ("Editor SQL", "editor-sql"), ("Error de SQL", "error-sql"),
+    ("Tarjeta de consulta JOIN", "tarjeta-join"), ("Navegación", "navegacion"), ("Texto, búsqueda y pie", "texto-busqueda-pie"),
+]
+
+
+def sheet():
+    """Hoja única con todos los componentes: incrusta cada SVG ya generado como <svg> anidado."""
+    import re as _re
+    colw, gutter, top = 960, 40, 120
+    cols = [top, top]
+    body = tx(40, 52, "NODEX · HOJA DE COMPONENTES", 20, TEXT, 500, ls=2.4) + tx(40, 78, "Marca, color, tipografía, retícula y todos los componentes del sistema HUD en un solo documento.", 12.5, TEXT3)
+    body += line(40, 96, 40 + colw * 2 + gutter, 96, SEP)
+    for n, (name, rel) in enumerate(SHEET, 1):
+        sub = (OUT / "components" / f"{rel}.svg") if "/" not in rel else (OUT / f"{rel}.svg")
+        src = sub.read_text(encoding="utf-8")
+        w, h = (int(v) for v in _re.search(r'viewBox="0 0 (\d+) (\d+)"', src).groups())
+        inner = _re.search(r"<svg[^>]*>(.*)</svg>", src, _re.S).group(1)
+        inner = _re.sub(r"<title[^>]*>.*?</title>|<desc[^>]*>.*?</desc>|<style>.*?</style>", "", inner, flags=_re.S)
+        c = 0 if cols[0] <= cols[1] else 1
+        x, y = 40 + c * (colw + gutter), cols[c]
+        body += tx(x, y + 14, f"{n:02d} · {name.upper()}", 11, TEXT2, 500, ls=1.4) + line(x, y + 24, x + min(w, colw), y + 24, LINE)
+        k = min(1, colw / w)  # lo que no cabe en la columna se reduce
+        sw_, sh_ = round(w * k), round(h * k)
+        body += f'<svg x="{x}" y="{y + 36}" width="{sw_}" height="{sh_}" viewBox="0 0 {w} {h}">{inner}</svg>'
+        cols[c] = y + 36 + sh_ + 36
+    W, H = 40 * 2 + colw * 2 + gutter, max(cols) + 4
+    save("hoja-de-componentes.svg", doc(W, H, body, "Hoja de componentes Nodex", "Todos los componentes del sistema de diseño en un solo SVG"))
+
+
 def build():
     OUT.mkdir(parents=True, exist_ok=True)
     swatch_files()
     palette_files()
     proportion()
-    for f in (banner, header, brand, icons, cards, callouts, chips_buttons, headings, codeblock, datatable, editors, navigation, joincard, layout, typography, spacing, interaction):
+    for f in (banner, header, brand, icons, cards, callouts, chips_buttons, headings, codeblock, datatable, editors, navigation, joincard, layout, typography, spacing, interaction, misc):
         f()
+    sheet()
     print("SVG generados:", sum(1 for _ in OUT.rglob("*.svg")))
 
 

@@ -361,6 +361,11 @@ inline en `js/app.js`) para no pedir ficheros extra.
 Cada componente es **un fichero CSS** en `css/components/` con nombres BEM en inglés (`bloque__elemento--modificador`). La
 función que lo genera vive en `js/core.js` (bloques de contenido) o en `js/app.js` (vistas).
 
+> **Hoja única.** Todos los componentes, la marca, el color y la retícula juntos en un solo SVG:
+> [`docs/foundations/hoja-de-componentes.svg`](docs/foundations/hoja-de-componentes.svg).
+
+<p align="center"><a href="docs/foundations/hoja-de-componentes.svg"><img src="docs/foundations/hoja-de-componentes.svg" width="900" alt="Hoja de componentes de Nodex"></a></p>
+
 ### 4.1 Cabecera
 
 <p align="center"><img src="docs/foundations/components/cabecera-escritorio.svg" width="880" alt="Cabecera de escritorio"></p>
@@ -497,6 +502,14 @@ el significado nunca depende del color. Fichero: `join-viz.css` (usa un _contain
 | **Búsqueda** | `<dialog>` modal: entrada de 56 px, resultados con título, módulo y extracto con `<mark>` en blanco/tinta; el resultado seleccionado lleva borde izquierdo naranja. Atajo `/`. |
 
 Ficheros: `sidebar.css`, `toc.css`, `pager.css`, `search-dialog.css`.
+
+### 4.12 Texto, búsqueda y pie
+
+<p align="center"><img src="docs/foundations/components/texto-busqueda-pie.svg" width="760" alt="Migas, búsqueda, texto en línea, lista, desplegable, figura y pie"></p>
+
+Migas de pan (enlace en `--color-text-2`, página actual en `--color-text-3`), diálogo de búsqueda, código en línea, tecla, marcas de
+estado cuya **forma** lleva el significado, lista, desplegable, figura sobre fondo blanco y pie de página. Ficheros: `breadcrumb.css`,
+`search-dialog.css`, `text.css`, `site-footer.css`.
 
 ---
 
