@@ -150,7 +150,7 @@ La profundidad se expresa solo por luminosidad.
 | <img src="docs/foundations/swatches/color-text-2.svg" width="64" height="28" alt="muestra color-text-2"> | `--color-text-2` | `#C2C2CB` | `194, 194, 203` | 11.2:1 | AAA | Cuerpo secundario, enlaces de navegación, texto de nota y aviso. |
 | <img src="docs/foundations/swatches/color-text-3.svg" width="64" height="28" alt="muestra color-text-3"> | `--color-text-3` | `#9A9AA5` | `154, 154, 165` | 7.1:1 | AAA | Metadatos, etiquetas, números de línea, leyendas. Mínimo permitido para texto. |
 | <img src="docs/foundations/swatches/color-text-hud.svg" width="64" height="28" alt="muestra color-text-hud"> | `--color-text-hud` | `#7C8699` | `124, 134, 153` | 5.4:1 | AA | Texto del banner HUD. **Desviación registrada** (D-1). |
-| <img src="docs/foundations/swatches/color-ink.svg" width="64" height="28" alt="muestra color-ink"> | `--color-ink` | `#0A0A0C` | `10, 10, 12` | 1.0:1 | — | Texto sobre superficie clara (`--color-text`) o naranja. Contraste sobre naranja: **5.8:1**; sobre blanco: **17.6:1**. |
+| <img src="docs/foundations/swatches/color-ink.svg" width="64" height="28" alt="muestra color-ink"> | `--color-ink` | `#0A0A0C` | `10, 10, 12` | 1.0:1 | n/a | Texto sobre superficie clara (`--color-text`) o naranja. Contraste sobre naranja: **5.8:1**; sobre blanco: **17.6:1**. |
 
 
 **Regla de uso.** Cuerpo y títulos en `--color-text`; texto de apoyo en `--color-text-2`; metadatos y etiquetas en `--color-text-3`.
@@ -245,14 +245,14 @@ SIL OFL 1.1), con `font-display: swap` y pila de reserva `"DejaVu Sans Mono", ui
 | Título del banner | `clamp(34px, 7vw, 60px)` | 500 | 1,05 | Nombre en naranja. |
 | Subtítulo del banner | `clamp(22px, 4.2vw, 40px)` | 400 | 1,05 | `// 1.º DAW`, en blanco. |
 | Título de módulo | `clamp(22px, 3.2vw, 32px)` | 500 | 1,2 | Un `h1` por página. |
-| Título de tarjeta | 22 px | 500 | — | Tarjeta de temario. |
+| Título de tarjeta | 22 px | 500 | n/a | Tarjeta de temario. |
 | Título de sección | 17 px | 500 | 1,35 | `h2`, con cuadrado naranja. |
 | Subapartado | 15 px | 500 | 1,35 | `h3`, con cuadrado vacío. |
 | **Cuerpo** | **15 px** | 400 | **1,6** | `--font-size-base`; ancho máximo de línea `70ch`. |
-| Secundario / tablas / código en línea | 13–14 px | 400 | 1,5 | |
+| Secundario / tablas / código en línea | 13 a 14 px | 400 | 1,5 | |
 | Código (bloques y editores) | 13,5 px | 400 | 22 px fijo | Interlineado fijo para alinear con los números de línea. |
-| Meta y etiquetas | 11–12 px | 400 | — | Números de línea, leyendas, `kbd`. |
-| Rótulo HUD | 11–12 px | 400 | — | Mayúsculas con `letter-spacing` 2,2–2,4 px. |
+| Meta y etiquetas | 11 a 12 px | 400 | n/a | Números de línea, leyendas, `kbd`. |
+| Rótulo HUD | 11 a 12 px | 400 | n/a | Mayúsculas con `letter-spacing` 2,2 a 2,4 px. |
 
 **Reglas**
 
@@ -287,8 +287,8 @@ SIL OFL 1.1), con `font-display: swap` y pila de reserva `"DejaVu Sans Mono", ui
 | Ancho | Comportamiento |
 |---|---|
 | **≥ 1361 px** | Tres columnas: aside, lectura e índice de la página. |
-| **961 – 1360 px** | Se oculta el índice lateral; aside y lectura. |
-| **641 – 960 px** | El aside pasa a cajón con velo; la cabecera crece a dos filas (112 px) y aparece «Índice». |
+| **961 a 1360 px** | Se oculta el índice lateral; aside y lectura. |
+| **641 a 960 px** | El aside pasa a cajón con velo; la cabecera crece a dos filas (112 px) y aparece «Índice». |
 | **≤ 640 px** | Una columna; paginador apilado; botones de cabecera compactos. |
 
 Las tarjetas JOIN responden al **ancho de su propio contenedor** (`container-type: inline-size`), no al de la ventana: así se
@@ -304,7 +304,7 @@ Se usa un conjunto cerrado de valores en píxeles. Un valor fuera de la escala e
 `4 · 6 · 8 · 10 · 12 · 14 · 16 · 18 · 20 · 24 · 28 · 32 · 40 · 44 · 64`
 
 - **Separación entre secciones:** 64 px. Entre bloques de una sección: 18 px. Antes de un subapartado: 36 px.
-- **Relleno de contenedor:** 16–26 px según el componente (apartado 4).
+- **Relleno de contenedor:** 16 a 26 px según el componente (apartado 4).
 - **Objetivo táctil mínimo:** 44 px de alto en botones y enlaces de navegación.
 
 ---
@@ -644,24 +644,24 @@ componente o un token; _parche_ para correcciones de redacción o de medida.
 |---|---|---|
 | Cabecera, marca, temarios | `site-header.css` | `index.html` + `renderMainNav` |
 | Barra de acento | `accent-bar.css` | transversal |
-| Banner HUD | `banner.css` | `app.js` → `banner()` |
-| Tarjetas | `topic-card.css` | `app.js` → `viewHome()` |
-| Cabecera de módulo | `module-header.css` | `app.js` → `moduleHeader()` |
-| Secciones y títulos | `section.css` | `core.js` → `APP.section` |
+| Banner HUD | `banner.css` | `app.js`: `banner()` |
+| Tarjetas | `topic-card.css` | `app.js`: `viewHome()` |
+| Cabecera de módulo | `module-header.css` | `app.js`: `moduleHeader()` |
+| Secciones y títulos | `section.css` | `core.js`: `APP.section` |
 | Reglas y franjas | `ruler.css` | `app.js` |
-| Nota / aviso | `callout.css` | `core.js` → bloques `nota`, `aviso` |
+| Nota / aviso | `callout.css` | `core.js`: bloques `nota`, `aviso` |
 | Chips | `chip.css` | `app.js` |
 | Texto, listas, `kbd`, figuras, `details` | `text.css` | `core.js` |
-| Bloque de código | `code-block.css` | `core.js` → `codeBlock` |
-| Consola | `console.css` | `core.js` → `consoleBlock` |
-| Tabla de datos | `data-table.css` | `core.js` → `table` |
+| Bloque de código | `code-block.css` | `core.js`: `codeBlock` |
+| Consola | `console.css` | `core.js`: `consoleBlock` |
+| Tabla de datos | `data-table.css` | `core.js`: `table` |
 | Editor en vivo | `live-editor.css` | `editor.js` |
 | Editor SQL | `sql-editor.css` | `sql-runner.js` |
 | Tarjeta JOIN | `join-viz.css` | `joinviz.js` |
-| Aside | `sidebar.css` | `app.js` → `renderSidebar` |
+| Aside | `sidebar.css` | `app.js`: `renderSidebar` |
 | Índice de página | `toc.css` | `app.js` |
 | Paginador | `pager.css` | `app.js` |
-| Migas | `breadcrumb.css` | `app.js` → `breadcrumb()` |
+| Migas | `breadcrumb.css` | `app.js`: `breadcrumb()` |
 | Búsqueda | `search-dialog.css` | `app.js` |
 | Pie | `site-footer.css` | `app.js` |
 
@@ -681,6 +681,6 @@ polígonos, de modo que se ven igual en GitHub y en cualquier editor vectorial.
 
 ### 9.4 Licencias
 
-- **Fira Code** — SIL Open Font License 1.1 (`vendor/fonts/`). El texto de la licencia no está todavía copiado en esa carpeta.
-- **highlight.js** — BSD-3-Clause según el proyecto original (`vendor/hljs.js`).
-- **PGlite** — Apache-2.0 (`vendor/pglite/LICENSE`).
+- **Fira Code**: SIL Open Font License 1.1 (`vendor/fonts/`). El texto de la licencia no está todavía copiado en esa carpeta.
+- **highlight.js**: BSD-3-Clause según el proyecto original (`vendor/hljs.js`).
+- **PGlite**: Apache-2.0 (`vendor/pglite/LICENSE`).

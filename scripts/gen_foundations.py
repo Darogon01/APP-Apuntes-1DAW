@@ -601,10 +601,10 @@ def layout():
     gx0 = 288 + 32 + 40 + 780
     b += line(X(gx0), Y(64 + 30), X(gx0 + 40), Y(64 + 30), ACC, 2) + tx(X(gx0 + 20), Y(64 + 18), "--gap 40", 11, ACC, anchor="middle")
     b += caption(24, 452, "PUNTOS DE QUIEBRE")
-    for i, (lab, w) in enumerate((("≥ 1361 · tres columnas", 1360), ("961–1360 · sin índice lateral", 1000), ("641–960 · aside en cajón, cabecera 112 px", 700), ("≤ 640 · una columna, paginador apilado", 400))):
+    for i, (lab, w) in enumerate((("≥ 1361 · tres columnas", 1360), ("961 a 1360 · sin índice lateral", 1000), ("641 a 960 · aside en cajón, cabecera 112 px", 700), ("≤ 640 · una columna, paginador apilado", 400))):
         b += rect(24, 474 + i * 0, 0, 0)
     xs = 24
-    for lab, bw in (("≥1361", 330), ("961–1360", 240), ("641–960", 170), ("≤640", 120)):
+    for lab, bw in (("≥1361", 330), ("961 a 1360", 240), ("641 a 960", 170), ("≤640", 120)):
         b += rect(xs, 466, bw, 22, "none", MID) + tx(xs + 8, 481, lab, 11, TEXT2)
         xs += bw + 10
     save("components/reticula.svg", doc(W, H, b, "Retícula y puntos de quiebre", "Cabecera, aside, columna de lectura e índice con sus medidas, y los cuatro tramos responsive"))

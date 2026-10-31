@@ -1,6 +1,6 @@
 <div align="center">
 
-# Modex · Wiki técnica
+# Modex · Wikitech
 
 **Cómo está construido _Apuntes 1.º DAW_ y por qué**
 
@@ -103,7 +103,7 @@ flowchart TB
 | **Presentación** (`app.js`, `joinviz.js`) | Pinta cada vista una sola vez en `<main>`. |
 | **Interacción** (`editor.js`, `sql-runner.js`) | Convierten marcadores `[data-live]` en editores *después* de pintar. |
 
-**Orden de carga** (importa): `hljs → core → syllabus → ficheros de contenido → tienda-sql → joinviz → editor → sql-runner → app`. Los ficheros de contenido se *fusionan* con el `syllabus` mediante `APP.register`, así que un temario puede repartirse en varios ficheros (SQL: base, JOIN, cálculos y misiones). `app.js` va último porque es el único que actúa al cargarse: lee la URL y pinta.
+**Orden de carga** (importa): `hljs`, `core`, `syllabus`, los ficheros de contenido, `tienda-sql`, `joinviz`, `editor`, `sql-runner` y, por último, `app`. Los ficheros de contenido se *fusionan* con el `syllabus` mediante `APP.register`, así que un temario puede repartirse en varios ficheros (SQL: base, JOIN, cálculos y misiones). `app.js` va último porque es el único que actúa al cargarse: lee la URL y pinta.
 
 <p align="right"><sub><a href="#indice">↑ Índice</a> · <a href="#p2">← Anterior</a> · <a href="#p4">Siguiente →</a></sub></p>
 

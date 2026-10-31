@@ -1,4 +1,4 @@
-/* Apuntes 1.º DAW — app. Navegación por hash: #/<temario>/<módulo o sección>. */
+/* Apuntes 1.º DAW: navegación por hash (#/<temario>/<módulo o sección>), buscador y vistas. */
 (function () {
   "use strict";
   const APP = window.APP, S = APP.subjects;
