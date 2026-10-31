@@ -43,7 +43,7 @@ Una guía de estudio de 1.º DAW con cinco temarios (HTML, CSS, JavaScript, Java
 | Secciones / bloques | 461 / 1 377 |
 | Editores en vivo | 258 |
 | JS de la aplicación | ≈ 950 líneas en 5 ficheros |
-| Motor SQL (PGlite) | ≈ 17 MB, **solo se descarga si se pulsa «Ejecutar»** |
+| Motor SQL (PGlite) | ≈ 17 MB, solo se descarga si se pulsa «Ejecutar» |
 
 <p align="right"><sub><a href="#indice">↑ Índice</a> · <a href="#p2">Siguiente →</a></sub></p>
 
@@ -99,9 +99,9 @@ flowchart TB
 | Capa | Responsabilidad |
 |---|---|
 | **Datos** (`content/`) | Qué se enseña. Solo datos, sin HTML ni lógica. |
-| **Núcleo** (`core.js`) | Convierte un bloque de datos en una cadena HTML. |
-| **Presentación** (`app.js`, `joinviz.js`) | Pinta cada vista una sola vez en `<main>`. |
-| **Interacción** (`editor.js`, `sql-runner.js`) | Convierten marcadores `[data-live]` en editores *después* de pintar. |
+| Núcleo (`core.js`) | Convierte un bloque de datos en una cadena HTML. |
+| Presentación (`app.js`, `joinviz.js`) | Pinta cada vista una sola vez en `<main>`. |
+| Interacción (`editor.js`, `sql-runner.js`) | Convierten marcadores `[data-live]` en editores *después* de pintar. |
 
 **Orden de carga** (importa): `hljs`, `core`, `syllabus`, los ficheros de contenido, `tienda-sql`, `joinviz`, `editor`, `sql-runner` y, por último, `app`. Los ficheros de contenido se *fusionan* con el `syllabus` mediante `APP.register`, así que un temario puede repartirse en varios ficheros (SQL: base, JOIN, cálculos y misiones). `app.js` va último porque es el único que actúa al cargarse: lee la URL y pinta.
 
@@ -171,7 +171,7 @@ Un módulo sin `contenido` aparece como «en preparación». Los `id` de módulo
 
 - **Sin estado ni red:** no hay `localStorage`, cookies, `fetch` ni analítica. Lo único que se carga dinámicamente es el motor SQL, desde el propio sitio.
 - **Código del usuario aislado** en un `iframe` de origen opaco; el SQL corre en memoria de la pestaña y no sale del navegador.
-- **Rápido por no hacer:** sin framework, una escritura de DOM por vista, motor SQL de carga diferida, fuentes propias (2 pesos) y cero peticiones a terceros.
+- Rendimiento: sin framework, una escritura de DOM por vista, motor SQL de carga diferida, fuentes propias (2 pesos) y cero peticiones a terceros.
 
 <p align="right"><sub><a href="#indice">↑ Índice</a> · <a href="#p6">← Anterior</a> · <a href="#p8">Siguiente →</a></sub></p>
 
@@ -185,14 +185,14 @@ El contenido grande **no se escribe a mano**: se genera con scripts y se version
 
 | Script | Función |
 |---|---|
-| `convert.py`, `mark-sql.mjs` | Convierte los apuntes a bloques y marca como ejecutables los SQL que **funcionan de verdad** en PGlite. |
+| `convert.py`, `mark-sql.mjs` | Convierte los apuntes a bloques y marca como ejecutables los SQL que funcionan de verdad en PGlite. |
 | `jslib.py`, `js_a…d.py`, `gen_js.py` | El temario de JS, escrito en Python y serializado a `content/js.js`. |
-| `join_content.py`, `mision_content.py`, `calc_exprs.py`, `pgeval.py` | Módulos de JOIN, misiones y chuleta; los resultados se **obtienen ejecutando** cada expresión. |
+| `join_content.py`, `mision_content.py`, `calc_exprs.py`, `pgeval.py` | Módulos de JOIN, misiones y chuleta; los resultados se obtienen ejecutando cada expresión. |
 | `verify_join.py` | Contrasta el motor de `joinviz` con PostgreSQL. |
 | `bundle.py` | Empaqueta todo en `dist/index.html` para probar sin servidor (no se versiona). |
 | `gen_foundations.py` | Genera los SVG de `FOUNDATIONS-DESIGN.md` desde `tokens.css`. |
 
-Principio: **un resultado que sale en pantalla se obtiene ejecutándolo**, no escribiéndolo a mano.
+Los resultados que se muestran se obtienen ejecutando el código, no escribiéndolos a mano.
 
 <p align="right"><sub><a href="#indice">↑ Índice</a> · <a href="#p7">← Anterior</a> · <a href="#p9">Siguiente →</a></sub></p>
 
@@ -214,18 +214,18 @@ GitHub Pages desde `main`, carpeta raíz, sin compilación (`.nojekyll` desactiv
 
 | Decisión | Alternativas descartadas y motivo |
 |---|---|
-| **Sitio estático, sin framework ni build** | React/Vue/Astro: aportan reactividad que no hace falta (cada vista se pinta una vez desde datos estáticos) y añaden compilación y dependencias para una sola persona. |
-| **Scripts clásicos + `window.APP`** | Módulos ES o bundler: exigirían servidor siempre y complicarían el empaquetado en un fichero. Coste asumido: acoplamiento por orden de carga. |
-| **Contenido como datos estructurados en JS** | Markdown en cliente: no expresa editores, tarjetas JOIN ni avisos tipados. HTML a mano: mezcla contenido y diseño. JSON + `fetch`: pide servidor. Con datos, un cambio de diseño se hace en una función y el buscador sale de la estructura. |
-| **Rutas con hash** | History API: GitHub Pages no reescribe URLs, así que recargar `/sql/mod-09` daría 404. |
-| **PostgreSQL real (PGlite)** | SQLite en WASM: pesa menos pero es **otro dialecto** y enseñaría sintaxis que en PostgreSQL no existe. Servidor propio: coste y riesgo, y Pages no lo permite. |
-| **Librerías y fuentes en `vendor/`** | CDN: una caída o un bloqueo de red rompería la app y cada visita enviaría datos a un tercero. |
-| **Diagrama JOIN calculado con datos reales** | Imágenes a mano: se quedan obsoletas y no son accesibles. Ejecutar PGlite para dibujar: obligaría a bajar 17 MB solo por *leer* la explicación. Riesgo del motor propio: divergir de SQL, mitigado con verificación automática. |
-| **Resultados obtenidos ejecutando** | Escribirlos a mano es la fuente clásica de errores en material didáctico. |
-| **CSS nativo con capas, tokens y BEM** | Tailwind/Sass/CSS-in-JS: compilación o dependencia sin beneficio aquí. |
-| **Una sola familia monoespaciada, sin ligaduras** | Con ligaduras, `==` se dibujaría como `=`: enseñaría mal justo los operadores. |
-| **Editor en `iframe` aislado** | `eval` en la página: un ejemplo podría romper la app o leer su estado. |
-| **Buscador propio** | lunr/Fuse: para ≈ 460 secciones una búsqueda simple es instantánea y sin dependencias. Sin búsqueda difusa. |
+| Sitio estático, sin framework ni build | React/Vue/Astro: aportan reactividad que no hace falta (cada vista se pinta una vez desde datos estáticos) y añaden compilación y dependencias para una sola persona. |
+| Scripts clásicos + `window.APP` | Módulos ES o bundler: exigirían servidor siempre y complicarían el empaquetado en un fichero. Coste asumido: acoplamiento por orden de carga. |
+| Contenido como datos estructurados en JS | Markdown en cliente: no expresa editores, tarjetas JOIN ni avisos tipados. HTML a mano: mezcla contenido y diseño. JSON + `fetch`: pide servidor. Con datos, un cambio de diseño se hace en una función y el buscador sale de la estructura. |
+| Rutas con hash | History API: GitHub Pages no reescribe URLs, así que recargar `/sql/mod-09` daría 404. |
+| PostgreSQL real (PGlite) | SQLite en WASM: pesa menos pero es otro dialecto y enseñaría sintaxis que en PostgreSQL no existe. Servidor propio: coste y riesgo, y Pages no lo permite. |
+| Librerías y fuentes en `vendor/` | CDN: una caída o un bloqueo de red rompería la app y cada visita enviaría datos a un tercero. |
+| Diagrama JOIN calculado con datos reales | Imágenes a mano: se quedan obsoletas y no son accesibles. Ejecutar PGlite para dibujar: obligaría a bajar 17 MB solo por *leer* la explicación. Riesgo del motor propio: divergir de SQL, mitigado con verificación automática. |
+| Resultados obtenidos ejecutando | Escribirlos a mano es la fuente clásica de errores en material didáctico. |
+| CSS nativo con capas, tokens y BEM | Tailwind/Sass/CSS-in-JS: compilación o dependencia sin beneficio aquí. |
+| Una sola familia monoespaciada, sin ligaduras | Con ligaduras, `==` se dibujaría como `=`: enseñaría mal justo los operadores. |
+| Editor en `iframe` aislado | `eval` en la página: un ejemplo podría romper la app o leer su estado. |
+| Buscador propio | lunr/Fuse: para ≈ 460 secciones una búsqueda simple es instantánea y sin dependencias. Sin búsqueda difusa. |
 
 <p align="right"><sub><a href="#indice">↑ Índice</a> · <a href="#p9">← Anterior</a> · <a href="#p11">Siguiente →</a></sub></p>
 

@@ -38,14 +38,14 @@
 ### 1.1 Propósito
 
 Modex es una guía de estudio de 1.º de Desarrollo de Aplicaciones Web (HTML, CSS, JavaScript, Java y SQL) que se consulta mientras se
-programa: abierta junto al editor, con prisa, a menudo de noche. El sistema de diseño existe para que **el contenido sea lo único que se
-vea** y para que cualquier pantalla nueva se parezca a las anteriores sin que nadie tenga que decidirlo otra vez.
+programa: abierta junto al editor, con prisa, a menudo de noche. El sistema de diseño existe para que el contenido sea lo único que se
+vea y para que cualquier pantalla nueva se parezca a las anteriores sin que nadie tenga que decidirlo otra vez.
 
 ### 1.2 Concepto: «ficha técnica plana»
 
 La estética toma prestado el lenguaje de las interfaces de instrumentación (HUD): línea fina, rótulos en mayúsculas con espaciado
-amplio, cabeceras tipo `SYS://`, corchetes de esquina y reglas con marcas. Se descartan deliberadamente sus excesos: **sin neón, sin
-degradados, sin sombras, sin relieve, sin texturas decorativas y sin emojis**. Queda una ficha técnica plana sobre negro, con un único
+amplio, cabeceras tipo `SYS://`, corchetes de esquina y reglas con marcas. Se descartan deliberadamente sus excesos: sin neón, sin
+degradados, sin sombras, sin relieve, sin texturas decorativas y sin emojis. Queda una ficha técnica plana sobre negro, con un único
 color de señal.
 
 ### 1.3 A quién sirve
@@ -67,7 +67,7 @@ css/components/*.css    ← un fichero por componente, nombres BEM en inglés
 
 Las hojas de estilo se ordenan con `@layer tokens, base, layout, components, utilities`: una capa posterior gana a la anterior sin
 guerras de especificidad. Los SVG de este documento se generan con `scripts/gen_foundations.py` leyendo `css/tokens.css`, de modo que
-**las muestras de color no pueden desincronizarse del código** (apartado 9.3).
+las muestras de color no pueden desincronizarse del código (apartado 9.3).
 
 ---
 
@@ -135,7 +135,7 @@ La profundidad se expresa solo por luminosidad.
 | <img src="docs/foundations/swatches/color-mid.svg" width="64" height="28" alt="muestra color-mid"> | `--color-mid` | `#6E6E78` | `110, 110, 120` | 3.9:1 | n/a | Contorno de chip, tecla `kbd`, marcador de lista, punto de consola. Es la única línea que cumple 3:1. |
 
 
-> **Nota de accesibilidad.** `--color-line` (1,6:1) y `--color-separator` (2,3:1) son **decorativos**: separan zonas, pero ningún control
+> Nota de accesibilidad: `--color-line` (1,6:1) y `--color-separator` (2,3:1) son **decorativos**: separan zonas, pero ningún control
 > depende de ellos para ser reconocible. Los controles que sí necesitan un límite visible usan `--color-mid` (3,9:1, cumple el mínimo
 > de 3:1 para componentes de interfaz) o un relleno.
 
@@ -153,8 +153,8 @@ La profundidad se expresa solo por luminosidad.
 | <img src="docs/foundations/swatches/color-ink.svg" width="64" height="28" alt="muestra color-ink"> | `--color-ink` | `#0A0A0C` | `10, 10, 12` | 1.0:1 | n/a | Texto sobre superficie clara (`--color-text`) o naranja. Contraste sobre naranja: **5.8:1**; sobre blanco: **17.6:1**. |
 
 
-**Regla de uso.** Cuerpo y títulos en `--color-text`; texto de apoyo en `--color-text-2`; metadatos y etiquetas en `--color-text-3`.
-**No existe un cuarto nivel de texto**: el mínimo permitido (`--color-text-3`) ya cumple AA sobre la superficie más clara que
+Cuerpo y títulos en `--color-text`; texto de apoyo en `--color-text-2`; metadatos y etiquetas en `--color-text-3`.
+No existe un cuarto nivel de texto: el mínimo permitido (`--color-text-3`) ya cumple AA sobre la superficie más clara que
 soporta texto (`--color-sunken`).
 
 ### 3.1.5 Acento
@@ -369,7 +369,7 @@ inline en `js/app.js`) para no pedir ficheros extra.
 Cada componente es **un fichero CSS** en `css/components/` con nombres BEM en inglés (`bloque__elemento--modificador`). La
 función que lo genera vive en `js/core.js` (bloques de contenido) o en `js/app.js` (vistas).
 
-> **Hoja única.** Todos los componentes, la marca, el color y la retícula juntos en un solo SVG:
+> Hoja única: todos los componentes, la marca, el color y la retícula juntos en un solo SVG:
 > [`docs/foundations/hoja-de-componentes.svg`](docs/foundations/hoja-de-componentes.svg).
 
 <p align="center"><a href="docs/foundations/hoja-de-componentes.svg"><img src="docs/foundations/hoja-de-componentes.svg" width="900" alt="Hoja de componentes de Modex"></a></p>
@@ -389,7 +389,7 @@ función que lo genera vive en `js/core.js` (bloques de contenido) o en `js/app.
 | Buscar | Abre el diálogo de búsqueda; tecla `/`. |
 | Índice | **Solo móvil (≤ 960 px).** En escritorio el índice ya está en el aside. |
 
-**Estados.** Barra inferior naranja: reposo 55 % · hover/foco 100 % + brillo · activo 3 px + brillo. Fichero: `site-header.css`, `accent-bar.css`.
+Estados: barra inferior naranja: reposo 55 % · hover/foco 100 % + brillo · activo 3 px + brillo. Fichero: `site-header.css`, `accent-bar.css`.
 
 ### 4.2 Banner HUD
 
@@ -675,7 +675,7 @@ El script lee `css/tokens.css` (colores) y `js/app.js` (glifos de los iconos) y 
 filtros, degradados, `<pattern>`, `clip-path` ni `mask`: el brillo se simula con capas translúcidas y las esquinas cortadas son
 polígonos, de modo que se ven igual en GitHub y en cualquier editor vectorial.
 
-> **Limitación conocida.** Las imágenes SVG cargadas con `<img>` no pueden descargar tipografías externas, así que en GitHub el texto
+> Limitación conocida: Las imágenes SVG cargadas con `<img>` no pueden descargar tipografías externas, así que en GitHub el texto
 > de los dibujos se muestra con la fuente monoespaciada del sistema en lugar de Fira Code. Las proporciones se calculan con la
 > métrica de Fira Code (0,6 em por carácter) y son equivalentes.
 
