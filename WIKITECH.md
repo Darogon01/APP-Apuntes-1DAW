@@ -8,7 +8,7 @@
 
 </div>
 
-> Guía breve de la arquitectura. El diseño visual está en [`FOUNDATIONS-DESIGN.md`](FOUNDATIONS-DESIGN.md) y el arranque rápido en [`README.md`](README.md).
+> Guía breve de la arquitectura. El diseño visual está en [`FOUNDATION-SYSTEM-DESIGN.md`](FOUNDATION-SYSTEM-DESIGN.md) y el arranque rápido en [`README.md`](README.md).
 
 ---
 
@@ -60,7 +60,7 @@ js/                 core.js · app.js · editor.js · sql-runner.js · joinviz.j
 content/            los temarios como datos (módulos → secciones → bloques) + tienda-sql.js (BD de práctica)
 vendor/             Fira Code, highlight.js y PGlite copiados al repo (versión fija)
 scripts/            herramientas de autor (no forman parte de la web)
-docs/foundations/   SVG generados para FOUNDATIONS-DESIGN.md
+docs/foundations/   SVG generados para FOUNDATION-SYSTEM-DESIGN.md
 ```
 
 La web solo usa lo que está en `index.html`, `css/`, `js/`, `content/`, `vendor/` y `favicon.svg`. Nada importa de `scripts/` ni de `docs/`.
@@ -190,7 +190,7 @@ El contenido grande **no se escribe a mano**: se genera con scripts y se version
 | `join_content.py`, `mision_content.py`, `calc_exprs.py`, `pgeval.py` | Módulos de JOIN, misiones y chuleta; los resultados se obtienen ejecutando cada expresión. |
 | `verify_join.py` | Contrasta el motor de `joinviz` con PostgreSQL. |
 | `bundle.py` | Empaqueta todo en `dist/index.html` para probar sin servidor (no se versiona). |
-| `gen_foundations.py` | Genera los SVG de `FOUNDATIONS-DESIGN.md` desde `tokens.css`. |
+| `gen_foundations.py` | Genera los SVG de `FOUNDATION-SYSTEM-DESIGN.md` desde `tokens.css`. |
 
 Los resultados que se muestran se obtienen ejecutando el código, no escribiéndolos a mano.
 
@@ -255,6 +255,6 @@ GitHub Pages desde `main`, carpeta raíz, sin compilación (`.nojekyll` desactiv
 
 - **Módulo nuevo:** declararlo en `content/syllabus.js`, escribir su `contenido["mod-nn"]` (con un aviso «Ojo» del error típico) y comprobar que pinta, se indexa en el buscador y enlaza con sus vecinos.
 - **Tipo de bloque nuevo:** rama en `APP.block` y en `APP.plain` (`core.js`) + un fichero en `css/components/` usando solo tokens.
-- **Cambio de diseño:** editar `css/tokens.css`, ejecutar `python scripts/gen_foundations.py` y actualizar `FOUNDATIONS-DESIGN.md`.
+- **Cambio de diseño:** editar `css/tokens.css`, ejecutar `python scripts/gen_foundations.py` y actualizar `FOUNDATION-SYSTEM-DESIGN.md`.
 
 <p align="right"><sub><a href="#indice">↑ Índice</a> · <a href="#p11">← Anterior</a></sub></p>

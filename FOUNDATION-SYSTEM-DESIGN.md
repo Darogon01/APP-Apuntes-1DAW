@@ -1,6 +1,6 @@
 <div align="center">
 
-# Modex · Foundations
+# Modex · Foundation System Design
 
 **Sistema de diseño «HUD» de _Apuntes 1.º DAW_**
 
@@ -18,20 +18,24 @@
 
 ---
 
+<a id="indice"></a>
+
 ## Índice
 
-1. [Introducción](#1-introducción)
-2. [Principios de diseño](#2-principios-de-diseño)
-3. [Fundamentos](#3-fundamentos)
-   - [3.1 Color](#31-color) · [3.2 Tipografía](#32-tipografía) · [3.3 Retícula y espaciado](#33-retícula-y-espaciado) · [3.4 Línea, forma y profundidad](#34-línea-forma-y-profundidad) · [3.5 Marca e iconografía](#35-marca-e-iconografía) · [3.6 Movimiento](#36-movimiento)
-4. [Componentes](#4-componentes)
-5. [Estados e interacción](#5-estados-e-interacción)
-6. [Accesibilidad](#6-accesibilidad)
-7. [Contenido y voz](#7-contenido-y-voz)
-8. [Gobierno y versionado](#8-gobierno-y-versionado)
-9. [Apéndices](#9-apéndices)
+1. [Introducción](#s1)
+2. [Principios de diseño](#s2)
+3. [Fundamentos](#s3)
+   - [3.1 Color](#s3_1) · [3.2 Tipografía](#s3_2) · [3.3 Retícula y espaciado](#s3_3) · [3.4 Línea, forma y profundidad](#s3_4) · [3.5 Marca e iconografía](#s3_5) · [3.6 Movimiento](#s3_6)
+4. [Componentes](#s4)
+5. [Estados e interacción](#s5)
+6. [Accesibilidad](#s6)
+7. [Contenido y voz](#s7)
+8. [Gobierno y versionado](#s8)
+9. [Apéndices](#s9)
 
 ---
+
+<a id="s1"></a>
 
 ## 1. Introducción
 
@@ -69,7 +73,11 @@ Las hojas de estilo se ordenan con `@layer tokens, base, layout, components, uti
 guerras de especificidad. Los SVG de este documento se generan con `scripts/gen_foundations.py` leyendo `css/tokens.css`, de modo que
 las muestras de color no pueden desincronizarse del código (apartado 9.3).
 
+<p align="right"><sub><a href="#indice">↑ Índice</a> · <a href="#s2">Siguiente →</a></sub></p>
+
 ---
+
+<a id="s2"></a>
 
 ## 2. Principios de diseño
 
@@ -91,9 +99,17 @@ las muestras de color no pueden desincronizarse del código (apartado 9.3).
 - Un segundo acento que compita con el naranja.
 - Elementos de una misma fila con alturas distintas.
 
+<p align="right"><sub><a href="#indice">↑ Índice</a> · <a href="#s1">← Anterior</a> · <a href="#s3">Siguiente →</a></sub></p>
+
 ---
 
+<a id="s3"></a>
+
 ## 3. Fundamentos
+
+<p align="right"><sub><a href="#indice">↑ Índice</a> · <a href="#s2">← Anterior</a> · <a href="#s3_1">Siguiente →</a></sub></p>
+
+<a id="s3_1"></a>
 
 ## 3.1 Color
 
@@ -230,7 +246,11 @@ Los contrastes se calculan con la fórmula de luminancia relativa de WCAG 2.x (`
 | `--color-ink` sobre `--color-text` (botón Ejecutar, cabecera de tabla) | 17.6:1 | AAA |
 | Peor color de código sobre `--color-panel` (`--code-punctuation`) | 5.4:1 | AA |
 
+<p align="right"><sub><a href="#indice">↑ Índice</a> · <a href="#s3">← Anterior</a> · <a href="#s3_2">Siguiente →</a></sub></p>
+
 ---
+
+<a id="s3_2"></a>
 
 ## 3.2 Tipografía
 
@@ -262,7 +282,11 @@ SIL OFL 1.1), con `font-display: swap` y pila de reserva `"DejaVu Sans Mono", ui
 3. No hay cursiva en el sistema: el énfasis es peso 500, no inclinación.
 4. Las mayúsculas se reservan a rótulos HUD y etiquetas de estado; el texto corrido nunca va en mayúsculas.
 
+<p align="right"><sub><a href="#indice">↑ Índice</a> · <a href="#s3_1">← Anterior</a> · <a href="#s3_3">Siguiente →</a></sub></p>
+
 ---
+
+<a id="s3_3"></a>
 
 ## 3.3 Retícula y espaciado
 
@@ -307,7 +331,11 @@ Se usa un conjunto cerrado de valores en píxeles. Un valor fuera de la escala e
 - **Relleno de contenedor:** 16 a 26 px según el componente (apartado 4).
 - **Objetivo táctil mínimo:** 44 px de alto en botones y enlaces de navegación.
 
+<p align="right"><sub><a href="#indice">↑ Índice</a> · <a href="#s3_2">← Anterior</a> · <a href="#s3_4">Siguiente →</a></sub></p>
+
 ---
+
+<a id="s3_4"></a>
 
 ## 3.4 Línea, forma y profundidad
 
@@ -320,7 +348,11 @@ Se usa un conjunto cerrado de valores en píxeles. Un valor fuera de la escala e
 - **Trama rayada.** El aviso y la franja de sección llevan una trama diagonal de 10 × 10 px. Es el segundo canal (además del color)
   que identifica el aviso.
 
+<p align="right"><sub><a href="#indice">↑ Índice</a> · <a href="#s3_3">← Anterior</a> · <a href="#s3_5">Siguiente →</a></sub></p>
+
 ---
+
+<a id="s3_5"></a>
 
 ## 3.5 Marca e iconografía
 
@@ -350,7 +382,11 @@ Iconos de línea sobre un círculo de 54 de radio (viewBox 120 × 120): trazo de
 pequeño cuadrado de acento. Cada temario tiene el suyo (`home`, `sql`, `java`, `html`, `css`, `js`). Se dibujan en línea (SVG
 inline en `js/app.js`) para no pedir ficheros extra.
 
+<p align="right"><sub><a href="#indice">↑ Índice</a> · <a href="#s3_4">← Anterior</a> · <a href="#s3_6">Siguiente →</a></sub></p>
+
 ---
+
+<a id="s3_6"></a>
 
 ## 3.6 Movimiento
 
@@ -362,7 +398,11 @@ inline en `js/app.js`) para no pedir ficheros extra.
 
 **No hay animación decorativa.** Con `prefers-reduced-motion: reduce` se anulan transiciones, animaciones y el desplazamiento suave.
 
+<p align="right"><sub><a href="#indice">↑ Índice</a> · <a href="#s3_5">← Anterior</a> · <a href="#s4">Siguiente →</a></sub></p>
+
 ---
+
+<a id="s4"></a>
 
 ## 4. Componentes
 
@@ -519,7 +559,11 @@ Migas de pan (enlace en `--color-text-2`, página actual en `--color-text-3`), d
 estado cuya **forma** lleva el significado, lista, desplegable, figura sobre fondo blanco y pie de página. Ficheros: `breadcrumb.css`,
 `search-dialog.css`, `text.css`, `site-footer.css`.
 
+<p align="right"><sub><a href="#indice">↑ Índice</a> · <a href="#s3_6">← Anterior</a> · <a href="#s5">Siguiente →</a></sub></p>
+
 ---
+
+<a id="s5"></a>
 
 ## 5. Estados e interacción
 
@@ -537,7 +581,11 @@ estado cuya **forma** lleva el significado, lista, desplegable, figura sobre fon
 | Enlace | Subrayado de 1 px en `--color-mid`; en hover pasa a naranja. |
 | Cargando (SQL) | Mensaje de estado en texto; el botón Ejecutar se atenúa y deja de recibir eventos. |
 
+<p align="right"><sub><a href="#indice">↑ Índice</a> · <a href="#s4">← Anterior</a> · <a href="#s6">Siguiente →</a></sub></p>
+
 ---
+
+<a id="s6"></a>
 
 ## 6. Accesibilidad
 
@@ -555,7 +603,11 @@ El objetivo es **WCAG 2.2 nivel AA** como mínimo.
 | Zoom y desbordes | Contenedores fluidos; el código y las tablas desbordan en horizontal con desplazamiento enfocable, nunca se truncan. |
 | Impresión | Se ocultan cabecera, aside, índice, paginador y botones; fondo blanco y texto negro. |
 
+<p align="right"><sub><a href="#indice">↑ Índice</a> · <a href="#s5">← Anterior</a> · <a href="#s7">Siguiente →</a></sub></p>
+
 ---
+
+<a id="s7"></a>
 
 ## 7. Contenido y voz
 
@@ -567,7 +619,11 @@ El objetivo es **WCAG 2.2 nivel AA** como mínimo.
 - **Versiones:** si algo depende de la versión (Java 21 LTS, PostgreSQL 18, ES2024…), se dice.
 - **Etiquetas de interfaz:** verbo en infinitivo o sustantivo breve («Ejecutar», «Copiar», «Restablecer», «Buscar»).
 
+<p align="right"><sub><a href="#indice">↑ Índice</a> · <a href="#s6">← Anterior</a> · <a href="#s8">Siguiente →</a></sub></p>
+
 ---
+
+<a id="s8"></a>
 
 ## 8. Gobierno y versionado
 
@@ -620,7 +676,11 @@ componente o un token; _parche_ para correcciones de redacción o de medida.
 |---|---|
 | **1.0** | Primera edición normativa: principios, color con muestras, tipografía, retícula, 11 componentes dibujados en SVG, accesibilidad y gobierno. Incluye el contraste reforzado del texto secundario (`--color-text-2` `#C2C2CB`, `--color-text-3` `#9A9AA5`), el color por tabla y la marca Modex. |
 
+<p align="right"><sub><a href="#indice">↑ Índice</a> · <a href="#s7">← Anterior</a> · <a href="#s9">Siguiente →</a></sub></p>
+
 ---
+
+<a id="s9"></a>
 
 ## 9. Apéndices
 
@@ -684,3 +744,5 @@ polígonos, de modo que se ven igual en GitHub y en cualquier editor vectorial.
 - **Fira Code**: SIL Open Font License 1.1 (`vendor/fonts/`). El texto de la licencia no está todavía copiado en esa carpeta.
 - **highlight.js**: BSD-3-Clause según el proyecto original (`vendor/hljs.js`).
 - **PGlite**: Apache-2.0 (`vendor/pglite/LICENSE`).
+
+<p align="right"><sub><a href="#indice">↑ Índice</a> · <a href="#s8">← Anterior</a></sub></p>
