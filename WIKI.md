@@ -12,22 +12,26 @@
 
 ---
 
+<a id="indice"></a>
+
 ## Índice
 
-1. [Qué es](#1-qué-es)
-2. [Estructura](#2-estructura)
-3. [Arquitectura](#3-arquitectura)
-4. [Modelo de contenido](#4-modelo-de-contenido)
-5. [Cómo funciona](#5-cómo-funciona)
-6. [CSS](#6-css)
-7. [Seguridad y rendimiento](#7-seguridad-y-rendimiento)
-8. [Pipeline de autor y verificación](#8-pipeline-de-autor-y-verificación)
-9. [Despliegue](#9-despliegue)
-10. [Decisiones: por qué así y no de otra forma](#10-decisiones-por-qué-así-y-no-de-otra-forma)
-11. [Limitaciones](#11-limitaciones)
-12. [Cómo ampliar](#12-cómo-ampliar)
+1. [Qué es](#p1)
+2. [Estructura](#p2)
+3. [Arquitectura](#p3)
+4. [Modelo de contenido](#p4)
+5. [Cómo funciona](#p5)
+6. [CSS](#p6)
+7. [Seguridad y rendimiento](#p7)
+8. [Pipeline de autor y verificación](#p8)
+9. [Despliegue](#p9)
+10. [Decisiones: por qué así y no de otra forma](#p10)
+11. [Limitaciones](#p11)
+12. [Cómo ampliar](#p12)
 
 ---
+
+<a id="p1"></a>
 
 ## 1. Qué es
 
@@ -41,9 +45,11 @@ Una guía de estudio de 1.º DAW con cinco temarios (HTML, CSS, JavaScript, Java
 | JS de la aplicación | ≈ 950 líneas en 5 ficheros |
 | Motor SQL (PGlite) | ≈ 17 MB, **solo se descarga si se pulsa «Ejecutar»** |
 
-<p align="right"><sub><a href="#índice">↑ Subir</a> · <a href="#2-estructura">Siguiente →</a></sub></p>
+<p align="right"><sub><a href="#indice">↑ Índice</a> · <a href="#p2">Siguiente →</a></sub></p>
 
 ---
+
+<a id="p2"></a>
 
 ## 2. Estructura
 
@@ -59,9 +65,11 @@ docs/foundations/   SVG generados para FOUNDATIONS-DESIGN.md
 
 La web solo usa lo que está en `index.html`, `css/`, `js/`, `content/`, `vendor/` y `favicon.svg`. Nada importa de `scripts/` ni de `docs/`.
 
-<p align="right"><sub><a href="#índice">↑ Subir</a> · <a href="#1-qué-es">← Anterior</a> · <a href="#3-arquitectura">Siguiente →</a></sub></p>
+<p align="right"><sub><a href="#indice">↑ Índice</a> · <a href="#p1">← Anterior</a> · <a href="#p3">Siguiente →</a></sub></p>
 
 ---
+
+<a id="p3"></a>
 
 ## 3. Arquitectura
 
@@ -97,9 +105,11 @@ flowchart TB
 
 **Orden de carga** (importa): `hljs → core → syllabus → ficheros de contenido → tienda-sql → joinviz → editor → sql-runner → app`. Los ficheros de contenido se *fusionan* con el `syllabus` mediante `APP.register`, así que un temario puede repartirse en varios ficheros (SQL: base, JOIN, cálculos y misiones). `app.js` va último porque es el único que actúa al cargarse: lee la URL y pinta.
 
-<p align="right"><sub><a href="#índice">↑ Subir</a> · <a href="#2-estructura">← Anterior</a> · <a href="#4-modelo-de-contenido">Siguiente →</a></sub></p>
+<p align="right"><sub><a href="#indice">↑ Índice</a> · <a href="#p2">← Anterior</a> · <a href="#p4">Siguiente →</a></sub></p>
 
 ---
+
+<a id="p4"></a>
 
 ## 4. Modelo de contenido
 
@@ -117,9 +127,11 @@ Un módulo sin `contenido` aparece como «en preparación». Los `id` de módulo
 
 **Texto en línea:** `` `código` ``, `**negrita**`, `{{Tecla}}`, `[[ok]]`, `[texto](@id-seccion)`, `[texto](https://…)` y `((tabla|texto))` (color de tabla). El texto se escapa **antes** de sustituir la sintaxis, así que nada de contenido llega al DOM sin escapar.
 
-<p align="right"><sub><a href="#índice">↑ Subir</a> · <a href="#3-arquitectura">← Anterior</a> · <a href="#5-cómo-funciona">Siguiente →</a></sub></p>
+<p align="right"><sub><a href="#indice">↑ Índice</a> · <a href="#p3">← Anterior</a> · <a href="#p5">Siguiente →</a></sub></p>
 
 ---
+
+<a id="p5"></a>
 
 ## 5. Cómo funciona
 
@@ -135,9 +147,11 @@ Un módulo sin `contenido` aparece como «en preparación». Los `id` de módulo
 
 **Tarjetas JOIN (`joinviz.js`).** Cada consulta se explica con **un color por tabla**. El motor lee las filas reales *parseando los `INSERT` de la propia BD*, calcula el resultado (inner, left, right, full, cross, `WHERE`, agregados, orden y límite) y dibuja el diagrama en SVG. Las filas sin pareja se marcan con `✕`/`∅` y trama, no solo con color. Los resultados de las 42 consultas del contenido se contrastan con PostgreSQL real (`scripts/verify_join.py`) y coinciden.
 
-<p align="right"><sub><a href="#índice">↑ Subir</a> · <a href="#4-modelo-de-contenido">← Anterior</a> · <a href="#6-css">Siguiente →</a></sub></p>
+<p align="right"><sub><a href="#indice">↑ Índice</a> · <a href="#p4">← Anterior</a> · <a href="#p6">Siguiente →</a></sub></p>
 
 ---
+
+<a id="p6"></a>
 
 ## 6. CSS
 
@@ -147,9 +161,11 @@ Un módulo sin `contenido` aparece como «en preparación». Los `id` de módulo
 - **CSS nativo**, sin Sass ni Tailwind. La tarjeta JOIN usa *container queries*.
 - Tres puntos de quiebre: 1360, 960 y 640 px.
 
-<p align="right"><sub><a href="#índice">↑ Subir</a> · <a href="#5-cómo-funciona">← Anterior</a> · <a href="#7-seguridad-y-rendimiento">Siguiente →</a></sub></p>
+<p align="right"><sub><a href="#indice">↑ Índice</a> · <a href="#p5">← Anterior</a> · <a href="#p7">Siguiente →</a></sub></p>
 
 ---
+
+<a id="p7"></a>
 
 ## 7. Seguridad y rendimiento
 
@@ -157,9 +173,11 @@ Un módulo sin `contenido` aparece como «en preparación». Los `id` de módulo
 - **Código del usuario aislado** en un `iframe` de origen opaco; el SQL corre en memoria de la pestaña y no sale del navegador.
 - **Rápido por no hacer:** sin framework, una escritura de DOM por vista, motor SQL de carga diferida, fuentes propias (2 pesos) y cero peticiones a terceros.
 
-<p align="right"><sub><a href="#índice">↑ Subir</a> · <a href="#6-css">← Anterior</a> · <a href="#8-pipeline-de-autor-y-verificación">Siguiente →</a></sub></p>
+<p align="right"><sub><a href="#indice">↑ Índice</a> · <a href="#p6">← Anterior</a> · <a href="#p8">Siguiente →</a></sub></p>
 
 ---
+
+<a id="p8"></a>
 
 ## 8. Pipeline de autor y verificación
 
@@ -176,17 +194,21 @@ El contenido grande **no se escribe a mano**: se genera con scripts y se version
 
 Principio: **un resultado que sale en pantalla se obtiene ejecutándolo**, no escribiéndolo a mano.
 
-<p align="right"><sub><a href="#índice">↑ Subir</a> · <a href="#7-seguridad-y-rendimiento">← Anterior</a> · <a href="#9-despliegue">Siguiente →</a></sub></p>
+<p align="right"><sub><a href="#indice">↑ Índice</a> · <a href="#p7">← Anterior</a> · <a href="#p9">Siguiente →</a></sub></p>
 
 ---
+
+<a id="p9"></a>
 
 ## 9. Despliegue
 
 GitHub Pages desde `main`, carpeta raíz, sin compilación (`.nojekyll` desactiva Jekyll). Un `git push` publica en uno o dos minutos; conviene recargar sin caché (`Ctrl`+`Shift`+`R`). En local hace falta un servidor (`python -m http.server 8000`), porque abrir `index.html` con doble clic impide cargar el motor SQL.
 
-<p align="right"><sub><a href="#índice">↑ Subir</a> · <a href="#8-pipeline-de-autor-y-verificación">← Anterior</a> · <a href="#10-decisiones-por-qué-así-y-no-de-otra-forma">Siguiente →</a></sub></p>
+<p align="right"><sub><a href="#indice">↑ Índice</a> · <a href="#p8">← Anterior</a> · <a href="#p10">Siguiente →</a></sub></p>
 
 ---
+
+<a id="p10"></a>
 
 ## 10. Decisiones: por qué así y no de otra forma
 
@@ -205,9 +227,11 @@ GitHub Pages desde `main`, carpeta raíz, sin compilación (`.nojekyll` desactiv
 | **Editor en `iframe` aislado** | `eval` en la página: un ejemplo podría romper la app o leer su estado. |
 | **Buscador propio** | lunr/Fuse: para ≈ 460 secciones una búsqueda simple es instantánea y sin dependencias. Sin búsqueda difusa. |
 
-<p align="right"><sub><a href="#índice">↑ Subir</a> · <a href="#9-despliegue">← Anterior</a> · <a href="#11-limitaciones">Siguiente →</a></sub></p>
+<p align="right"><sub><a href="#indice">↑ Índice</a> · <a href="#p9">← Anterior</a> · <a href="#p11">Siguiente →</a></sub></p>
 
 ---
+
+<a id="p11"></a>
 
 ## 11. Limitaciones
 
@@ -221,9 +245,11 @@ GitHub Pages desde `main`, carpeta raíz, sin compilación (`.nojekyll` desactiv
 | Pruebas | Verificaciones por script; no hay suite automática de interfaz. |
 | Autoría | El contenido se elaboró con asistencia de IA y se comprobó ejecutándolo donde fue posible; conviene contrastarlo con el material del curso. |
 
-<p align="right"><sub><a href="#índice">↑ Subir</a> · <a href="#10-decisiones-por-qué-así-y-no-de-otra-forma">← Anterior</a> · <a href="#12-cómo-ampliar">Siguiente →</a></sub></p>
+<p align="right"><sub><a href="#indice">↑ Índice</a> · <a href="#p10">← Anterior</a> · <a href="#p12">Siguiente →</a></sub></p>
 
 ---
+
+<a id="p12"></a>
 
 ## 12. Cómo ampliar
 
@@ -231,4 +257,4 @@ GitHub Pages desde `main`, carpeta raíz, sin compilación (`.nojekyll` desactiv
 - **Tipo de bloque nuevo:** rama en `APP.block` y en `APP.plain` (`core.js`) + un fichero en `css/components/` usando solo tokens.
 - **Cambio de diseño:** editar `css/tokens.css`, ejecutar `python scripts/gen_foundations.py` y actualizar `FOUNDATIONS-DESIGN.md`.
 
-<p align="right"><sub><a href="#índice">↑ Subir</a> · <a href="#11-limitaciones">← Anterior</a></sub></p>
+<p align="right"><sub><a href="#indice">↑ Índice</a> · <a href="#p11">← Anterior</a></sub></p>
